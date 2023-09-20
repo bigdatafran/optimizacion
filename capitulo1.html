@@ -1,0 +1,2554 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>1. Introducción. &#8212; Optimizacion con Python</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Modelización de restricciones lógicas con variables 0-1." href="capitulo2.html" />
+    <link rel="prev" title="Introducción." href="introduccion.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Optimizacion con Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduccion.html">
+   Introducción.
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  OR-Tools y teoría
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Introducción.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#problemas-de-optimizacion-lineal">
+   2. Problemas de optimización lineal.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#optimizacion-entera">
+   3. Optimización entera.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo2.html">
+   4. Modelización de restricciones lógicas con variables 0-1
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Pyomo
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyomo1.html">
+   1. Introducción a Pyomo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EstrategiasModeladoPyomo.html">
+   2. Estrategias de Modelado con Pyomo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ComponentesModelado1.html">
+   3. componentes de modelado.
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/capitulo1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/capitulo1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1. Introducción.
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problemas-de-optimizacion-lineal">
+   2. Problemas de optimización lineal.
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#elementos-basicos-de-un-problema-de-optimizacion">
+     2.1. Elementos básicos de un problema de optimización.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#el-optimizador-lineal-glop">
+     2.2. El optimizador lineal Glop.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usando-arrays-para-definir-el-modelo">
+     2.3. Usando arrays para definir el modelo.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#el-problema-de-la-dieta-de-stigler">
+       2.3.1. El problema de la dieta de Stigler.
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimizacion-entera">
+   3. Optimización entera.
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     3.1. Introducción.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#programacion-entera-pura-condiciones-logicas">
+     3.2. Programación entera pura: condiciones lógicas.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejemplo-programacion-entera-pura">
+     3.3. Ejemplo programación entera pura.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#utilizando-arrays-para-resolucion-de-problemas">
+     3.4. Utilizando Arrays para resolución de problemas.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#programacion-entera-mixta-costes-fijos-y-condiciones-logicas">
+     3.5. Programación entera mixta: costes fijos y condiciones lógicas.
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#costes-fijos-en-produccion-y-redes">
+     3.6. Costes fijos en producción y redes.
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduccion">
+<h1><span class="section-number">1. </span>Introducción.<a class="headerlink" href="#introduccion" title="Permalink to this headline">¶</a></h1>
+<p>Este es el primer capítulo nos centraremos en la utilización de <a class="reference external" href="https://developers.google.com/optimization/introduction/overview">OR-Tools</a>, como herramienta libre y gratuita para resolver problemas de programación lineal de una forma libre y gratuita, con la base de programación de python. De entre  los muchos ámbitos de trabajo a los que se les puede aplicar este tipo de programación lineal, se pueden destacar el siguiente conjunto de problemas:</p>
+<ul class="simple">
+<li><p>Ruta óptima de vehículos. Gracias a estas aplicaciones, se pude encontrar la ruta óptima que debe ser utilizada, para que un conjunto de vehículos visiten diferentes puntos geográficos de manera que la distancia recorrida sea mínima.</p></li>
+<li><p>Programación de tareas o trabajos a realizar.  Encontrar la solución óptima para un conjunto complejo de tareas, algunas de las cuales deben realizarse antes que otras, en un conjunto fijo de máquinas, u otros recursos.</p></li>
+<li><p>Embalaje de contenedores. Empaquetar tantos objetos de distintos tamaños como sea posible en un número fijo de contenedores con capacidades máximas.</p></li>
+<li><p>Resolver problema de la dieta.  fue uno de los primeros problemas sobre optimización, motivado por el deseo del ejercito americano de asegurar unos requerimientos nutricionales al menor coste. El problema fue analizado y resuelto por <em>George Stigler</em> usando la programación lineal en 1947.</p></li>
+</ul>
+<p>En la mayoría de los casos, los problemas de este tipo tienen un gran número de posibles soluciones, de tal manera que demasiadas para que un ordenador pueda buscarlas todas en un tiempo aceptable. Para superar esto, OR-Tools utiliza <em>algoritmos de última generación</em> para reducir el conjunto de búsqueda, con el fin de encontrar una solución óptima (<em>o cercana a la óptima</em>). Hay que tener esta última expresión muy en cuenta, pues con OR_Tools, no siempre se encuentra la solución que desde un punto de vista estrictamente matemático sea la óptima, pero sí una solución muy cercana a ella.</p>
+<p>Con OR-Tools se pueden encontrar <em>solvers</em> para las siguientes cuestiones:</p>
+<ul class="simple">
+<li><p>Programación lineal y entera. En este caso el optimizador lineal denominado Glop, es capaz de encontrar soluciones optimas para problemas de programación lineal o entera. La definición de este tipo de problemas se hará en apartados posteriores.</p></li>
+</ul>
+<p>(******************Seguir en un futuro ampliando este apartado)</p>
+<p>Para poder trabajar con el optimizador OR_Tools lo primero que hay que hacer es instalarlo en la versión de Python  con la que se tabaje, y para hacer esto se puede utilizar el programa pip de Python que como a es sabido es una forma fácil y cómo de poder instalar paquetes en este lenguaje de programación, en concreto simplemente se tendrá que ejecutar lo siguiente en la línea de comandos:</p>
+<p><em>python -m pip install –upgrade –user ortools</em></p>
+<p>Para más información sobre cómo instalar este paquete se puede <a class="reference external" href="https://developers.google.com/optimization/install">visitar este enlace</a>, donde el lector interesado podrá encontrar más información sobre este tema.</p>
+</div>
+<div class="section" id="problemas-de-optimizacion-lineal">
+<h1><span class="section-number">2. </span>Problemas de optimización lineal.<a class="headerlink" href="#problemas-de-optimizacion-lineal" title="Permalink to this headline">¶</a></h1>
+<p>Se denomina <em>problema de optimización lineal</em> aquel en el que se pretende encontrar una solución óptima a un problema planteado mediante ecuaciones de tipo lineal, tanto en lo que se refiere a la función que se quiere optimizar como para las restricciones impuestas al problema. Para los lectores interesados en esta materia, se le puede dar como referencia el contenido que existe en el libro <a class="reference external" href="https://docs.mosek.com/modeling-cookbook/index.html">Mosk modeling cookbok</a>.</p>
+<p>Como ejemplo práctico de problema de programación lineal, se puede presentar el definido en la siguiente ecuación.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+max\quad3x+y\\
+s.t.\\
+0\leq x\leq1\\
+0\leq y\leq2\\
+x+y\leq2
+\end{align*}
+\end{split}\]</div>
+<p>En el problema anterior, como puede verse, tanto la función que se quiere optimizar, como las restricciones son de tipo lineal.</p>
+<p>Para resolver este tipo de problemas, Google ofrece dos tipos de herramientas :</p>
+<p>1.- <strong>Glop</strong>. Es el optimizador lineal interno de Google, disponible como código abierto. Puedes acceder a Glop a través de la envoltura del solucionador lineal OR-Tools, que es una envoltura para Glop, así como para otros solucionadores de optimización lineal de terceros. Mas adelante, se pondrán ejemplos para que el lector aprenda a utilizar este optmizador.</p>
+<p>2.- <strong>El <a class="reference external" href="https://developers.google.com/apps-script/reference/optimization">The Linear Optimization Service in Google Apps Script</a></strong>, permite a los desarrolladores realizar llamadas a funciones para resolver problemas de optimización lineal. Se basa en Glop para los problemas de optimización lineal puros en los que todas las variables pueden tomar valores reales. Si alguna de las variables está restringida a los números enteros, el servicio utiliza SCIP, del Zuse-Institut de Berlín.</p>
+<div class="section" id="elementos-basicos-de-un-problema-de-optimizacion">
+<h2><span class="section-number">2.1. </span>Elementos básicos de un problema de optimización.<a class="headerlink" href="#elementos-basicos-de-un-problema-de-optimizacion" title="Permalink to this headline">¶</a></h2>
+<p>El objetivo fundamental de un problema de  optimización es encontrar la mejor solución a un problema entre un gran conjunto de soluciones posibles. (A veces, y sobre todo cuando un problema es muy complejo, el investigador se puede conformar  con encontrar cualquier solución factible; OR-Tools puede hacer eso también).</p>
+<p>Un problema típico de optimización, se puede encontrar dentro del siguiente enunciado. Supongamos que una empresa de transporte entrega paquetes a sus clientes utilizando una flota de camiones. Cada día, la empresa debe asignar paquetes a los camiones, y luego elegir una ruta para que cada camión entregue sus paquetes. Cada posible asignación de paquetes y rutas tiene un coste, basado en la distancia total de viaje de los camiones, y posiblemente también en otros factores. El problema es elegir la asignación de paquetes y rutas que tenga el menor coste.</p>
+<p>Cuando se trabaja con un problema de optimización, se deben distinguir dos elementos básicos:</p>
+<p>1.- <strong>La función objetivo</strong>.Representa cantidad que se quiere optimizar. En el ejemplo anterior, el objetivo es minimizar el coste. Para plantear un problema de optimización, hay que definir una función que calcule el valor del objetivo para cualquier solución posible. Esto se llama la función objetivo. En el ejemplo anterior, la función objetivo calcularía el coste total de cualquier asignación de paquetes y rutas.</p>
+<p>Una <em>solución óptima</em> es aquella para la que el valor de la función objetivo es el mejor. (“Mejor” puede ser un máximo o un mínimo).</p>
+<p>2.- <strong>Las restricciones</strong>. Son el conjunto de soluciones posibles, basadas en los requisitos específicos del problema. Por ejemplo, si la empresa de transporte no puede asignar a los camiones paquetes por encima de un peso determinado, esto impondría una restricción a las soluciones. Una <strong>solución factible</strong> es aquella que satisface todas las restricciones dadas para el problema, sin ser necesariamente óptima.</p>
+<p>Los pasos que deberán darse para resolver un problema de programación lineal son los siguientes:</p>
+<p>1.- Importar las librerías necesarias.</p>
+<p>2.- Declarar el solver.</p>
+<p>3.- Crear las variables.</p>
+<p>4.- Definir las restricciones.</p>
+<p>5.- Definir la función objetivo.</p>
+<p>6.- Ejecutar el solver y mostrar los resultados.</p>
+<p>La materialización de cómo se implementan estos pasos con OR-Tools, se muestra en los siguientes ejemplos.</p>
+</div>
+<div class="section" id="el-optimizador-lineal-glop">
+<h2><span class="section-number">2.2. </span>El optimizador lineal Glop.<a class="headerlink" href="#el-optimizador-lineal-glop" title="Permalink to this headline">¶</a></h2>
+<p>Como ya se ha indicado anteriormente, el optimizador lineal Glop de google permite dar solución a los problemas de optimización lineal,  a él se va a dedicar el presente apartado.</p>
+<p>Entre las ventajas que ofrece está herramienta está en que se puede considerar que es rápido, eficiente en cuanto a memoria y numéricamente estable. A continuación vamos a mostrar cómo utilizar Glop para resolver un problema lineal sencillo . El sencillo problema que se pretende resolver es el que se ha mostrado unas lineas más arriba.</p>
+<p>Para entender mejor el significado de este tipo de problemas, y dado que el problema que se pretende resolver ofrece la sencillez suficiente para comprender el significado de lo que vamos buscando, en primer lugar vamos a encontrar la solución mediante un sencillo método gráfico.</p>
+<p>Paara ello hacemos uso de la calculadora gráfica que <a class="reference external" href="https://www.geogebra.org/calculator">nos ofrece geogebra</a>, que es una herramienta gratuita disponible en Internet y por lo tanto al alcance de cualquiera. La solución que obtenemos para este ejemplo, la vemos en el siguiente gráfico.</p>
+<p><img alt="Ejemplo 1" src="_images/fig1.PNG" /></p>
+<p>Como puede verse, de forma rápida se puede ver que la solución se encuentra en el punto x = 1 , y = 1.</p>
+<p>Veamos a continuación cómo poder obtener el resultado utilizando el optimizador lineal GLOP. En primer lugar lo que se debe hacer es importar la librería necesaria para poder construir todo esto.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ortools.linear_solver</span> <span class="kn">import</span> <span class="n">pywraplp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación creamos el solver mediane una instancia de la clase GLOP.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos el optmizador linel derivado de GLOP.</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;GLOP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación creamos las variables, con las restricciones que deben cumplir para ste problema.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos las variables x e y.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número total de variables =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVariables</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número total de variables = 2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Creamos la restricción lineal que nos indica el problema</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos la siguiente restricción lineal: 0 &lt;= x + y &lt;= 2.</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;ct&#39;</span><span class="p">)</span>
+<span class="n">ct</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ct</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of constraints =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumConstraints</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of constraints = 1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Creamos la función objetivo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the objective function, 3 * x + y.</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetMaximization</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>y por último resolvemos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solucion:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor objetivo =&#39;</span><span class="p">,</span> <span class="n">objective</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x =&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y =&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solucion:
+valor objetivo = 4.0
+x = 1.0
+y = 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como puede verse del resultado de la ejecución del código anterior, los valores x e y son exactamente los mismos que los obtenidos utilizando el sistema gráfico.</p>
+<p>Otro ejemplo sería el siguiente</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+max\quad3x+8y\\
+s.t.\\
+2x+4y\leq1600\\
+6x+2y\leq1700\\
+y\leq350\\
+x\geq0\\
+y\geq0
+\end{align*}
+\end{split}\]</div>
+<p>Utilizando procedimiento gráfico tenemos el siguiente resultado
+<img alt="Ejemplo 2" src="_images/fig2.PNG" /></p>
+<p>El código completo para resolver este problema sería el siguiente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Importamos la clase correspondiente</span>
+<span class="kn">from</span> <span class="nn">ortools.linear_solver</span> <span class="kn">import</span> <span class="n">pywraplp</span>
+
+<span class="c1">#Creamos al solver</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;GLOP&#39;</span><span class="p">)</span>
+
+<span class="c1">#Creamos las variables necesarias</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número total de variables </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">solver</span><span class="o">.</span><span class="n">NumVariables</span><span class="p">()))</span>
+
+<span class="c1">#Definimos las restricciones</span>
+<span class="c1"># Restricción 0: 2x + 4y &lt;= 1600.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">1600.0</span><span class="p">)</span>
+
+<span class="c1"># Restricción 1: 6x + 2y &lt;= 1700</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="mi">6</span><span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">1700.0</span><span class="p">)</span>
+
+<span class="c1"># Restricción 2:  y &lt;= 350.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">350.0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of constraints =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumConstraints</span><span class="p">())</span>
+
+<span class="c1"># Definimos la función objetivo</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">8</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Ejecutamos el solver</span>
+<span class="n">status</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="c1"># Sacamos la solución</span>
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solution:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Objective value =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x =&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y =&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The problem does not have an optimal solution.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número total de variables 2
+Number of constraints = 3
+Solution:
+Objective value = 3100.0
+x = 100.00000000000007
+y = 350.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos ver que la solución sería x=100 e y=350 que son los datos que hemos obtenido con la solución gráfica.</p>
+<p>La solución gráfica es muy fácil de obtener cuando se está trabajando con dos variables, pero sin embargo cuando el número de variables aumenta, hay que acudir a métodos analíticos que mediante la formulación matemática correspondiente nos ofrece el resultado buscado. Un ejemplo con tres variables lo tenemos en el siguiente problema.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+max\qquad x+2y+3z\\
+s.t.\\
+2x+y+z\leq20\\
+x+y+z\leq15\\
+x-y-z\geq0\\
+x,y,z\geq0
+\end{align*}
+\end{split}\]</div>
+<p>Siguiendo las pautas dadas en los ejemplos anteriores, el código necesario para resolver este problema sería el siguiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ortools.linear_solver</span> <span class="kn">import</span> <span class="n">pywraplp</span>
+
+<span class="c1">#Creamos al solver</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;GLOP&#39;</span><span class="p">)</span>
+
+<span class="c1"># declarar la variable x, con límite inferior 0 y sin límite superior</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="c1"># declarar variable y, con límite inferior 0 y sin límite superior</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="c1"># declarar la variable z, con límite inferior 0 y sin límite superior</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="s2">&quot;z&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># agregar un objetivo al solucionador</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span>
+<span class="c1"># agregar términos al objetivo de manera que la función objetivo resulte la correcta</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># declarar el problema como un problema de maximización</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetMaximization</span><span class="p">()</span>
+
+<span class="c1"># agregar restricción: 2x + y + z &lt;= 20</span>
+<span class="n">constraint</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="o">-</span><span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># agregar restricción: x + y + z &lt;= 15</span>
+<span class="n">constraint</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="o">-</span><span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># agregar restricción: x - y - z&gt; = 0</span>
+<span class="n">constraint</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">())</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Resuelvo problema</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="c1">#Solución óptima para x</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x_opt: &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+<span class="c1">#Solución óptima para y</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y_opt: &quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+<span class="c1">#Solución óptima para x</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;z_opt: &quot;</span><span class="p">,</span> <span class="n">z</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+
+<span class="c1">#Valor de la función objetivo</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;valor óptimo: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">solution_value</span><span class="p">()</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">.</span><span class="n">solution_value</span><span class="p">()</span><span class="o">+</span><span class="mi">3</span><span class="o">*</span><span class="n">z</span><span class="o">.</span><span class="n">solution_value</span><span class="p">()))</span>
+
+<span class="c1"># O también</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor objetivo_2 =&#39;</span><span class="p">,</span> <span class="n">objective</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x_opt:  6.666666666666667
+y_opt:  0.0
+z_opt:  6.666666666666667
+valor óptimo: 26.666666666666668
+valor objetivo_2 = 26.666666666666668
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="usando-arrays-para-definir-el-modelo">
+<h2><span class="section-number">2.3. </span>Usando arrays para definir el modelo.<a class="headerlink" href="#usando-arrays-para-definir-el-modelo" title="Permalink to this headline">¶</a></h2>
+<p>En el ejemplo anterior, se tienen tan sólo tres variables para optimizar el problema y entonces perfectamente se puede hacer el planteamiento sin gran esfuerzo, ahora bien cómo ¿ podemos plantear el problema cuando en lugar de tres variables se podrían tener 20 por ejemplo?. En esta situación tendriamos que acudir a reformular el problema de otra manera, y con la finalidad de que tenga más bien una aportación didáctica, a continuación se va a reformular el anterior problema a fin de que el lector pueda ver cómo poder hacerlo cuando se esté trabajando con un número considerable de variables.</p>
+<p>En primer lugar, se tendrán que definir los parámetros que van a acompañar a las variables del problema.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">para_objetivo</span> <span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># coeficientes función objetivo</span>
+
+<span class="n">para_restri</span> <span class="o">=</span><span class="p">[</span>  <span class="c1">#coeficientes para restricciones lineales</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#Observar que esta ecuación la cambio de signo</span>
+<span class="p">]</span>
+
+<span class="n">tope_restri</span> <span class="o">=</span><span class="p">[</span><span class="mi">20</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="c1">#tope para las restricciones</span>
+<span class="n">nombres</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;z&#39;</span><span class="p">]</span> <span class="c1">#los nombres de las variables</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para tener una uniformidad en la definición del problema, la tercera restricción la he cambiado de de signo, a fin de que todas las restricciones tengan una desigualdad del tipo menor o igual.</p>
+<p>Con estas definiciones previas, la actuación sería la siguiente.</p>
+<p>Definimos los paquetes necesarios y creamos el solver correspondiente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ortools.linear_solver</span> <span class="kn">import</span> <span class="n">pywraplp</span>
+
+<span class="c1">#Creamos al solver</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;GLOP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Declaramos las variables</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">{}</span> 
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">para_objetivo</span><span class="p">)):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span><span class="n">nombres</span><span class="p">[</span><span class="n">h</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número total de variables &#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVariables</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número total de variables  3
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación toca añadir las restricciones</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tope_restri</span><span class="p">)):</span>
+    <span class="n">constraint</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="o">-</span><span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="n">tope_restri</span><span class="p">[</span><span class="n">h</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">para_objetivo</span><span class="p">)):</span>
+        <span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">para_restri</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número total de restricciones: &#39;</span><span class="p">,</span><span class="n">solver</span><span class="o">.</span><span class="n">NumConstraints</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número total de restricciones:  3
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definimos a continuación la función objetivo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objective</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span>
+<span class="c1"># agregar términos al objetivo </span>
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">para_objetivo</span><span class="p">)):</span>
+    <span class="n">objective</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">h</span><span class="p">],</span><span class="n">para_objetivo</span><span class="p">[</span><span class="n">h</span><span class="p">])</span>
+
+<span class="n">objective</span><span class="o">.</span><span class="n">SetMaximization</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y ya estamos en condiciones de resolver el problema</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Resuelvo problema</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">para_objetivo</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solución para &quot;</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">h</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">h</span><span class="p">]</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+
+
+<span class="c1"># Valor función objetivo</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;valor objetivo =&#39;</span><span class="p">,</span> <span class="n">objective</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solución para  x : 6.666666666666667
+Solución para  y : 0.0
+Solución para  z : 6.666666666666667
+valor objetivo = 26.666666666666668
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="el-problema-de-la-dieta-de-stigler">
+<h3><span class="section-number">2.3.1. </span>El problema de la dieta de Stigler.<a class="headerlink" href="#el-problema-de-la-dieta-de-stigler" title="Permalink to this headline">¶</a></h3>
+<p>Como puede verse en el planteamiento del anterior problema, el hecho de poder utilizar arrays mejora sustancialmente la formulación del modelo de optimización lineal. Pero aún se ve mucho mejor esta mejora si el número de variables aumenta sustancialmente.</p>
+<p>Esto se puede ver en el denominado problema de la dieta de Stigler, que se puede ver en el <a class="reference external" href="https://developers.google.com/optimization/lp/glop">siguiente enlace</a>, pero que ppor su interés, se reproduce en este apartado.</p>
+<p>El enunciado inicial del problema se puede ver en <a class="reference external" href="https://en.wikipedia.org/wiki/Stigler_diet">este enlace de la wikipedia</a>. Se trata de un problema de optimización lineal formulado popr George Stigler, y cuyo enunciado es el siguiente:</p>
+<blockquote>
+<div><p>Para un hombre moderadamente activo que pesa 154 libras, ¿qué cantidad de cada uno de los 77 alimentos debe consumir diariamente para que la ingesta de nueve nutrientes sea al menos igual a las cantidades dietéticas recomendadas (RDA) sugeridas por el Consejo Nacional de Investigación en 1943, siendo el coste de la dieta mínimo?</p>
+</div></blockquote>
+<p>Esta dieta va a exigir los requerimientos mínimos que se indican a continuación:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Nutrientes</strong></p></th>
+<th class="head"><p><strong>Ingesta diaria recomendada</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Calories</p></td>
+<td><p>3,000 Calories</p></td>
+</tr>
+<tr class="row-odd"><td><p>Protein</p></td>
+<td><p>70 grams</p></td>
+</tr>
+<tr class="row-even"><td><p>Calcium</p></td>
+<td><p>.8 grams</p></td>
+</tr>
+<tr class="row-odd"><td><p>ron</p></td>
+<td><p>2 milligrams</p></td>
+</tr>
+<tr class="row-even"><td><p>itamin A</p></td>
+<td><p>,000 IU</p></td>
+</tr>
+<tr class="row-odd"><td><p>hiamine (Vitamin B1)</p></td>
+<td><p>.8 milligrams</p></td>
+</tr>
+<tr class="row-even"><td><p>iboflavin (Vitamin B2)</p></td>
+<td><p>.7 milligrams</p></td>
+</tr>
+<tr class="row-odd"><td><p>Niacin</p></td>
+<td><p>18 milligrams</p></td>
+</tr>
+<tr class="row-even"><td><p>Ascorbic Acid (Vitamin C)</p></td>
+<td><p>75 milligrams</p></td>
+</tr>
+</tbody>
+</table>
+<p>El conjunto de alimentos que evaluó Stigler era un reflejo de la época (1944). Los datos nutricionales que aparecen a continuación son por dólar, no por unidad, por lo que el objetivo es determinar cuántos dólares hay que gastar en cada alimento.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Commodity</p></th>
+<th class="head"><p>Unit</p></th>
+<th class="head"><p>1939 price (cents)</p></th>
+<th class="head"><p>Calories</p></th>
+<th class="head"><p>Protein (g)</p></th>
+<th class="head"><p>Calcium (g)</p></th>
+<th class="head"><p>Iron (mg)</p></th>
+<th class="head"><p>Vitamin A (IU)</p></th>
+<th class="head"><p>Thiamine (mg)</p></th>
+<th class="head"><p>Riboflavin (mg)</p></th>
+<th class="head"><p>Niacin (mg)</p></th>
+<th class="head"><p>Ascorbic Acid (mg)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Wheat Flour (Enriched)</p></td>
+<td><p>10 lb.</p></td>
+<td><p>36</p></td>
+<td><p>44.7</p></td>
+<td><p>1411</p></td>
+<td><p>2</p></td>
+<td><p>365</p></td>
+<td><p>0</p></td>
+<td><p>55.4</p></td>
+<td><p>33.3</p></td>
+<td><p>441</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Macaroni</p></td>
+<td><p>1 lb.</p></td>
+<td><p>14.1</p></td>
+<td><p>11.6</p></td>
+<td><p>418</p></td>
+<td><p>0.7</p></td>
+<td><p>54</p></td>
+<td><p>0</p></td>
+<td><p>3.2</p></td>
+<td><p>1.9</p></td>
+<td><p>68</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Wheat Cereal (Enriched)</p></td>
+<td><p>28 oz.</p></td>
+<td><p>24.2</p></td>
+<td><p>11.8</p></td>
+<td><p>377</p></td>
+<td><p>14.4</p></td>
+<td><p>175</p></td>
+<td><p>0</p></td>
+<td><p>14.4</p></td>
+<td><p>8.8</p></td>
+<td><p>114</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Corn Flakes</p></td>
+<td><p>8 oz.</p></td>
+<td><p>7.1</p></td>
+<td><p>11.4</p></td>
+<td><p>252</p></td>
+<td><p>0.1</p></td>
+<td><p>56</p></td>
+<td><p>0</p></td>
+<td><p>13.5</p></td>
+<td><p>2.3</p></td>
+<td><p>68</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Corn Meal</p></td>
+<td><p>1 lb.</p></td>
+<td><p>4.6</p></td>
+<td><p>36.0</p></td>
+<td><p>897</p></td>
+<td><p>1.7</p></td>
+<td><p>99</p></td>
+<td><p>30.9</p></td>
+<td><p>17.4</p></td>
+<td><p>7.9</p></td>
+<td><p>106</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hominy Grits</p></td>
+<td><p>24 oz.</p></td>
+<td><p>8.5</p></td>
+<td><p>28.6</p></td>
+<td><p>680</p></td>
+<td><p>0.8</p></td>
+<td><p>80</p></td>
+<td><p>0</p></td>
+<td><p>10.6</p></td>
+<td><p>1.6</p></td>
+<td><p>110</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Rice</p></td>
+<td><p>1 lb.</p></td>
+<td><p>7.5</p></td>
+<td><p>21.2</p></td>
+<td><p>460</p></td>
+<td><p>0.6</p></td>
+<td><p>41</p></td>
+<td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>4.8</p></td>
+<td><p>60</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rolled Oats</p></td>
+<td><p>1 lb.</p></td>
+<td><p>7.1</p></td>
+<td><p>25.3</p></td>
+<td><p>907</p></td>
+<td><p>5.1</p></td>
+<td><p>341</p></td>
+<td><p>0</p></td>
+<td><p>37.1</p></td>
+<td><p>8.9</p></td>
+<td><p>64</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>White Bread (Enriched)</p></td>
+<td><p>1 lb.</p></td>
+<td><p>7.9</p></td>
+<td><p>15.0</p></td>
+<td><p>488</p></td>
+<td><p>2.5</p></td>
+<td><p>115</p></td>
+<td><p>0</p></td>
+<td><p>13.8</p></td>
+<td><p>8.5</p></td>
+<td><p>126</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Whole Wheat Bread</p></td>
+<td><p>1 lb.</p></td>
+<td><p>9.1</p></td>
+<td><p>12.2</p></td>
+<td><p>484</p></td>
+<td><p>2.7</p></td>
+<td><p>125</p></td>
+<td><p>0</p></td>
+<td><p>13.9</p></td>
+<td><p>6.4</p></td>
+<td><p>160</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Rye Bread</p></td>
+<td><p>1 lb.</p></td>
+<td><p>9.1</p></td>
+<td><p>12.4</p></td>
+<td><p>439</p></td>
+<td><p>1.1</p></td>
+<td><p>82</p></td>
+<td><p>0</p></td>
+<td><p>9.9</p></td>
+<td><p>3</p></td>
+<td><p>66</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pound Cake</p></td>
+<td><p>1 lb.</p></td>
+<td><p>24.8</p></td>
+<td><p>8.0</p></td>
+<td><p>130</p></td>
+<td><p>0.4</p></td>
+<td><p>31</p></td>
+<td><p>18.9</p></td>
+<td><p>2.8</p></td>
+<td><p>3</p></td>
+<td><p>17</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Soda Crackers</p></td>
+<td><p>1 lb.</p></td>
+<td><p>15.1</p></td>
+<td><p>12.5</p></td>
+<td><p>288</p></td>
+<td><p>0.5</p></td>
+<td><p>50</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Milk</p></td>
+<td><p>1 qt.</p></td>
+<td><p>11</p></td>
+<td><p>6.1</p></td>
+<td><p>310</p></td>
+<td><p>10.5</p></td>
+<td><p>18</p></td>
+<td><p>16.8</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+<td><p>7</p></td>
+<td><p>177</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaporated Milk (can)</p></td>
+<td><p>14.5 oz.</p></td>
+<td><p>6.7</p></td>
+<td><p>8.4</p></td>
+<td><p>422</p></td>
+<td><p>15.1</p></td>
+<td><p>9</p></td>
+<td><p>26</p></td>
+<td><p>3</p></td>
+<td><p>23.5</p></td>
+<td><p>11</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>Butter</p></td>
+<td><p>1 lb.</p></td>
+<td><p>30.8</p></td>
+<td><p>10.8</p></td>
+<td><p>9</p></td>
+<td><p>0.2</p></td>
+<td><p>3</p></td>
+<td><p>44.2</p></td>
+<td><p>0</p></td>
+<td><p>0.2</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Oleomargarine</p></td>
+<td><p>1 lb.</p></td>
+<td><p>16.1</p></td>
+<td><p>20.6</p></td>
+<td><p>17</p></td>
+<td><p>0.6</p></td>
+<td><p>6</p></td>
+<td><p>55.8</p></td>
+<td><p>0.2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Eggs</p></td>
+<td><p>1 doz.</p></td>
+<td><p>32.6</p></td>
+<td><p>2.9</p></td>
+<td><p>238</p></td>
+<td><p>1.0</p></td>
+<td><p>52</p></td>
+<td><p>18.6</p></td>
+<td><p>2.8</p></td>
+<td><p>6.5</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Cheese (Cheddar)</p></td>
+<td><p>1 lb.</p></td>
+<td><p>24.2</p></td>
+<td><p>7.4</p></td>
+<td><p>448</p></td>
+<td><p>16.4</p></td>
+<td><p>19</p></td>
+<td><p>28.1</p></td>
+<td><p>0.8</p></td>
+<td><p>10.3</p></td>
+<td><p>4</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cream</p></td>
+<td><p>1/2 pt.</p></td>
+<td><p>14.1</p></td>
+<td><p>3.5</p></td>
+<td><p>49</p></td>
+<td><p>1.7</p></td>
+<td><p>3</p></td>
+<td><p>16.9</p></td>
+<td><p>0.6</p></td>
+<td><p>2.5</p></td>
+<td><p>0</p></td>
+<td><p>17</p></td>
+</tr>
+<tr class="row-even"><td><p>Peanut Butter</p></td>
+<td><p>1 lb.</p></td>
+<td><p>17.9</p></td>
+<td><p>15.7</p></td>
+<td><p>661</p></td>
+<td><p>1.0</p></td>
+<td><p>48</p></td>
+<td><p>0</p></td>
+<td><p>9.6</p></td>
+<td><p>8.1</p></td>
+<td><p>471</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mayonnaise</p></td>
+<td><p>1/2 pt.</p></td>
+<td><p>16.7</p></td>
+<td><p>8.6</p></td>
+<td><p>18</p></td>
+<td><p>0.2</p></td>
+<td><p>8</p></td>
+<td><p>2.7</p></td>
+<td><p>0.4</p></td>
+<td><p>0.5</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Crisco</p></td>
+<td><p>1 lb.</p></td>
+<td><p>20.3</p></td>
+<td><p>20.1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lard</p></td>
+<td><p>1 lb.</p></td>
+<td><p>9.8</p></td>
+<td><p>41.7</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0.2</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+<td><p>5</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Sirloin Steak</p></td>
+<td><p>1 lb.</p></td>
+<td><p>39.6</p></td>
+<td><p>2.9</p></td>
+<td><p>166</p></td>
+<td><p>0.1</p></td>
+<td><p>34</p></td>
+<td><p>0.2</p></td>
+<td><p>2.1</p></td>
+<td><p>2.9</p></td>
+<td><p>69</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Round Steak</p></td>
+<td><p>1 lb.</p></td>
+<td><p>36.4</p></td>
+<td><p>2.2</p></td>
+<td><p>214</p></td>
+<td><p>0.1</p></td>
+<td><p>32</p></td>
+<td><p>0.4</p></td>
+<td><p>2.5</p></td>
+<td><p>2.4</p></td>
+<td><p>87</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Rib Roast</p></td>
+<td><p>1 lb.</p></td>
+<td><p>29.2</p></td>
+<td><p>3.4</p></td>
+<td><p>213</p></td>
+<td><p>0.1</p></td>
+<td><p>33</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chuck Roast</p></td>
+<td><p>1 lb.</p></td>
+<td><p>22.6</p></td>
+<td><p>3.6</p></td>
+<td><p>309</p></td>
+<td><p>0.2</p></td>
+<td><p>46</p></td>
+<td><p>0.4</p></td>
+<td><p>1</p></td>
+<td><p>4</p></td>
+<td><p>120</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Plate</p></td>
+<td><p>1 lb.</p></td>
+<td><p>14.6</p></td>
+<td><p>8.5</p></td>
+<td><p>404</p></td>
+<td><p>0.2</p></td>
+<td><p>62</p></td>
+<td><p>0</p></td>
+<td><p>0.9</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Liver (Beef)</p></td>
+<td><p>1 lb.</p></td>
+<td><p>26.8</p></td>
+<td><p>2.2</p></td>
+<td><p>333</p></td>
+<td><p>0.2</p></td>
+<td><p>139</p></td>
+<td><p>169.2</p></td>
+<td><p>6.4</p></td>
+<td><p>50.81</p></td>
+<td><p>316</p></td>
+<td><p>525</p></td>
+</tr>
+<tr class="row-even"><td><p>Leg of Lamb</p></td>
+<td><p>1 lb.</p></td>
+<td><p>27.6</p></td>
+<td><p>3.1</p></td>
+<td><p>245</p></td>
+<td><p>0.1</p></td>
+<td><p>20</p></td>
+<td><p>0</p></td>
+<td><p>2.8</p></td>
+<td><p>3.9</p></td>
+<td><p>86</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lamb Chops (Rib)</p></td>
+<td><p>1 lb.</p></td>
+<td><p>36.6</p></td>
+<td><p>3.3</p></td>
+<td><p>140</p></td>
+<td><p>0.1</p></td>
+<td><p>15</p></td>
+<td><p>0</p></td>
+<td><p>1.7</p></td>
+<td><p>2.7</p></td>
+<td><p>54</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Pork Chops</p></td>
+<td><p>1 lb.</p></td>
+<td><p>30.7</p></td>
+<td><p>3.5</p></td>
+<td><p>196</p></td>
+<td><p>0.2</p></td>
+<td><p>30</p></td>
+<td><p>0</p></td>
+<td><p>17.4</p></td>
+<td><p>2.7</p></td>
+<td><p>60</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pork Loin Roast</p></td>
+<td><p>1 lb.</p></td>
+<td><p>24.2</p></td>
+<td><p>4.4</p></td>
+<td><p>249</p></td>
+<td><p>0.3</p></td>
+<td><p>37</p></td>
+<td><p>0</p></td>
+<td><p>18.2</p></td>
+<td><p>3.6</p></td>
+<td><p>79</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Bacon</p></td>
+<td><p>1 lb.</p></td>
+<td><p>25.6</p></td>
+<td><p>10.41</p></td>
+<td><p>152</p></td>
+<td><p>0.2</p></td>
+<td><p>23</p></td>
+<td><p>0</p></td>
+<td><p>1.8</p></td>
+<td><p>1.8</p></td>
+<td><p>71</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ham, smoked</p></td>
+<td><p>1 lb.</p></td>
+<td><p>27.4</p></td>
+<td><p>6.7</p></td>
+<td><p>212</p></td>
+<td><p>0.2</p></td>
+<td><p>31</p></td>
+<td><p>0</p></td>
+<td><p>9.9</p></td>
+<td><p>3.3</p></td>
+<td><p>50</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Salt Pork</p></td>
+<td><p>1 lb.</p></td>
+<td><p>16</p></td>
+<td><p>18.8</p></td>
+<td><p>164</p></td>
+<td><p>0.1</p></td>
+<td><p>26</p></td>
+<td><p>0</p></td>
+<td><p>1.4</p></td>
+<td><p>1.8</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Roasting Chicken</p></td>
+<td><p>1 lb.</p></td>
+<td><p>30.3</p></td>
+<td><p>1.8</p></td>
+<td><p>184</p></td>
+<td><p>0.1</p></td>
+<td><p>30</p></td>
+<td><p>0.1</p></td>
+<td><p>0.9</p></td>
+<td><p>1.8</p></td>
+<td><p>68</p></td>
+<td><p>461</p></td>
+</tr>
+<tr class="row-even"><td><p>Veal Cutlets</p></td>
+<td><p>1 lb.</p></td>
+<td><p>42.3</p></td>
+<td><p>1.7</p></td>
+<td><p>156</p></td>
+<td><p>0.1</p></td>
+<td><p>24</p></td>
+<td><p>0</p></td>
+<td><p>1.4</p></td>
+<td><p>2.4</p></td>
+<td><p>57</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Salmon, Pink (can)</p></td>
+<td><p>16 oz.</p></td>
+<td><p>13</p></td>
+<td><p>5.8</p></td>
+<td><p>705</p></td>
+<td><p>6.8</p></td>
+<td><p>45</p></td>
+<td><p>3.5</p></td>
+<td><p>1</p></td>
+<td><p>4.9</p></td>
+<td><p>209</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Apples</p></td>
+<td><p>1 lb.</p></td>
+<td><p>4.4</p></td>
+<td><p>5.8</p></td>
+<td><p>27</p></td>
+<td><p>0.5</p></td>
+<td><p>36</p></td>
+<td><p>7.3</p></td>
+<td><p>3.6</p></td>
+<td><p>2.7</p></td>
+<td><p>5</p></td>
+<td><p>544</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bananas</p></td>
+<td><p>1 lb.</p></td>
+<td><p>6.1</p></td>
+<td><p>4.9</p></td>
+<td><p>60</p></td>
+<td><p>0.4</p></td>
+<td><p>30</p></td>
+<td><p>17.4</p></td>
+<td><p>2.5</p></td>
+<td><p>3.5</p></td>
+<td><p>28</p></td>
+<td><p>498</p></td>
+</tr>
+<tr class="row-even"><td><p>Lemons</p></td>
+<td><p>1 doz.</p></td>
+<td><p>26</p></td>
+<td><p>1.0</p></td>
+<td><p>21</p></td>
+<td><p>0.5</p></td>
+<td><p>14</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+<td><p>0</p></td>
+<td><p>4</p></td>
+<td><p>952</p></td>
+</tr>
+<tr class="row-odd"><td><p>Oranges</p></td>
+<td><p>1 doz.</p></td>
+<td><p>30.9</p></td>
+<td><p>2.2</p></td>
+<td><p>40</p></td>
+<td><p>1.1</p></td>
+<td><p>18</p></td>
+<td><p>11.1</p></td>
+<td><p>3.6</p></td>
+<td><p>1.3</p></td>
+<td><p>10</p></td>
+<td><p>1998</p></td>
+</tr>
+<tr class="row-even"><td><p>Green Beans</p></td>
+<td><p>1 lb.</p></td>
+<td><p>7.1</p></td>
+<td><p>2.4</p></td>
+<td><p>138</p></td>
+<td><p>3.7</p></td>
+<td><p>80</p></td>
+<td><p>69</p></td>
+<td><p>4.3</p></td>
+<td><p>5.8</p></td>
+<td><p>37</p></td>
+<td><p>862</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cabbage</p></td>
+<td><p>1 lb.</p></td>
+<td><p>3.7</p></td>
+<td><p>2.6</p></td>
+<td><p>125</p></td>
+<td><p>4.0</p></td>
+<td><p>36</p></td>
+<td><p>7.2</p></td>
+<td><p>9</p></td>
+<td><p>4.5</p></td>
+<td><p>26</p></td>
+<td><p>5369</p></td>
+</tr>
+<tr class="row-even"><td><p>Carrots</p></td>
+<td><p>1 bunch</p></td>
+<td><p>4.7</p></td>
+<td><p>2.7</p></td>
+<td><p>73</p></td>
+<td><p>2.8</p></td>
+<td><p>43</p></td>
+<td><p>188.5</p></td>
+<td><p>6.1</p></td>
+<td><p>4.3</p></td>
+<td><p>89</p></td>
+<td><p>6081</p></td>
+</tr>
+<tr class="row-odd"><td><p>Celery</p></td>
+<td><p>1 stalk</p></td>
+<td><p>7.3</p></td>
+<td><p>0.9</p></td>
+<td><p>51</p></td>
+<td><p>3.0</p></td>
+<td><p>23</p></td>
+<td><p>0.9</p></td>
+<td><p>1.4</p></td>
+<td><p>1.4</p></td>
+<td><p>9</p></td>
+<td><p>313</p></td>
+</tr>
+<tr class="row-even"><td><p>Lettuce</p></td>
+<td><p>1 head</p></td>
+<td><p>8.2</p></td>
+<td><p>0.4</p></td>
+<td><p>27</p></td>
+<td><p>1.1</p></td>
+<td><p>22</p></td>
+<td><p>112.4</p></td>
+<td><p>1.8</p></td>
+<td><p>3.4</p></td>
+<td><p>11</p></td>
+<td><p>449</p></td>
+</tr>
+<tr class="row-odd"><td><p>Onions</p></td>
+<td><p>1 lb.</p></td>
+<td><p>3.6</p></td>
+<td><p>5.8</p></td>
+<td><p>166</p></td>
+<td><p>3.8</p></td>
+<td><p>59</p></td>
+<td><p>16.6</p></td>
+<td><p>4.7</p></td>
+<td><p>5.9</p></td>
+<td><p>21</p></td>
+<td><p>1184</p></td>
+</tr>
+<tr class="row-even"><td><p>Potatoes</p></td>
+<td><p>15 lb.</p></td>
+<td><p>34</p></td>
+<td><p>14.3</p></td>
+<td><p>336</p></td>
+<td><p>1.8</p></td>
+<td><p>118</p></td>
+<td><p>6.7</p></td>
+<td><p>29.41</p></td>
+<td><p>7.1</p></td>
+<td><p>198</p></td>
+<td><p>2522</p></td>
+</tr>
+<tr class="row-odd"><td><p>Spinach</p></td>
+<td><p>1 lb.</p></td>
+<td><p>8.1</p></td>
+<td><p>1.1</p></td>
+<td><p>106</p></td>
+<td><p>0</p></td>
+<td><p>138</p></td>
+<td><p>918.4</p></td>
+<td><p>5.7</p></td>
+<td><p>13.8</p></td>
+<td><p>33</p></td>
+<td><p>2755</p></td>
+</tr>
+<tr class="row-even"><td><p>Sweet Potatoes</p></td>
+<td><p>1 lb.</p></td>
+<td><p>5.1</p></td>
+<td><p>9.6</p></td>
+<td><p>138</p></td>
+<td><p>2.7</p></td>
+<td><p>54</p></td>
+<td><p>290.7</p></td>
+<td><p>8.4</p></td>
+<td><p>5.4</p></td>
+<td><p>83</p></td>
+<td><p>1912</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peaches (can)</p></td>
+<td><p>No. 2 1/2</p></td>
+<td><p>16.8</p></td>
+<td><p>3.7</p></td>
+<td><p>20</p></td>
+<td><p>0.4</p></td>
+<td><p>10</p></td>
+<td><p>21.5</p></td>
+<td><p>0.5</p></td>
+<td><p>1</p></td>
+<td><p>31</p></td>
+<td><p>196</p></td>
+</tr>
+<tr class="row-even"><td><p>Pears (can)</p></td>
+<td><p>No. 2 1/2</p></td>
+<td><p>20.4</p></td>
+<td><p>3.0</p></td>
+<td><p>8</p></td>
+<td><p>0.3</p></td>
+<td><p>8</p></td>
+<td><p>0.8</p></td>
+<td><p>0.8</p></td>
+<td><p>0.8</p></td>
+<td><p>5</p></td>
+<td><p>81</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pineapple (can)</p></td>
+<td><p>No. 2 1/2</p></td>
+<td><p>21.3</p></td>
+<td><p>2.4</p></td>
+<td><p>16</p></td>
+<td><p>0.4</p></td>
+<td><p>8</p></td>
+<td><p>2</p></td>
+<td><p>2.8</p></td>
+<td><p>0.8</p></td>
+<td><p>7</p></td>
+<td><p>399</p></td>
+</tr>
+<tr class="row-even"><td><p>Asparagus (can)</p></td>
+<td><p>No. 2</p></td>
+<td><p>27.7</p></td>
+<td><p>0.4</p></td>
+<td><p>33</p></td>
+<td><p>0.3</p></td>
+<td><p>12</p></td>
+<td><p>16.3</p></td>
+<td><p>1.4</p></td>
+<td><p>2.1</p></td>
+<td><p>17</p></td>
+<td><p>272</p></td>
+</tr>
+<tr class="row-odd"><td><p>Green Beans (can)</p></td>
+<td><p>No. 2</p></td>
+<td><p>10</p></td>
+<td><p>1.0</p></td>
+<td><p>54</p></td>
+<td><p>2</p></td>
+<td><p>65</p></td>
+<td><p>53.9</p></td>
+<td><p>1.6</p></td>
+<td><p>4.3</p></td>
+<td><p>32</p></td>
+<td><p>431</p></td>
+</tr>
+<tr class="row-even"><td><p>Pork and Beans (can)</p></td>
+<td><p>16 oz.</p></td>
+<td><p>7.1</p></td>
+<td><p>7.5</p></td>
+<td><p>364</p></td>
+<td><p>4</p></td>
+<td><p>134</p></td>
+<td><p>3.5</p></td>
+<td><p>8.3</p></td>
+<td><p>7.7</p></td>
+<td><p>56</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Corn (can)</p></td>
+<td><p>No. 2</p></td>
+<td><p>10.4</p></td>
+<td><p>5.2</p></td>
+<td><p>136</p></td>
+<td><p>0.2</p></td>
+<td><p>16</p></td>
+<td><p>12</p></td>
+<td><p>1.6</p></td>
+<td><p>2.7</p></td>
+<td><p>42</p></td>
+<td><p>218</p></td>
+</tr>
+<tr class="row-even"><td><p>Peas (can)</p></td>
+<td><p>No. 2</p></td>
+<td><p>13.8</p></td>
+<td><p>2.3</p></td>
+<td><p>136</p></td>
+<td><p>0.6</p></td>
+<td><p>45</p></td>
+<td><p>34.9</p></td>
+<td><p>4.9</p></td>
+<td><p>2.5</p></td>
+<td><p>37</p></td>
+<td><p>3701</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tomatoes (can)</p></td>
+<td><p>No. 2</p></td>
+<td><p>8.6</p></td>
+<td><p>1.3</p></td>
+<td><p>63</p></td>
+<td><p>0.7</p></td>
+<td><p>38</p></td>
+<td><p>53.2</p></td>
+<td><p>3.4</p></td>
+<td><p>2.5</p></td>
+<td><p>36</p></td>
+<td><p>1253</p></td>
+</tr>
+<tr class="row-even"><td><p>Tomato Soup (can)</p></td>
+<td><p>10 1/2 oz.</p></td>
+<td><p>7.6</p></td>
+<td><p>1.6</p></td>
+<td><p>71</p></td>
+<td><p>0.6</p></td>
+<td><p>43</p></td>
+<td><p>57.9</p></td>
+<td><p>3.5</p></td>
+<td><p>2.4</p></td>
+<td><p>67</p></td>
+<td><p>862</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peaches, Dried</p></td>
+<td><p>1 lb.</p></td>
+<td><p>15.7</p></td>
+<td><p>8.5</p></td>
+<td><p>87</p></td>
+<td><p>1.7</p></td>
+<td><p>173</p></td>
+<td><p>86.8</p></td>
+<td><p>1.2</p></td>
+<td><p>4.3</p></td>
+<td><p>55</p></td>
+<td><p>57</p></td>
+</tr>
+<tr class="row-even"><td><p>Prunes, Dried</p></td>
+<td><p>1 lb.</p></td>
+<td><p>9</p></td>
+<td><p>12.8</p></td>
+<td><p>99</p></td>
+<td><p>2.5</p></td>
+<td><p>154</p></td>
+<td><p>85.7</p></td>
+<td><p>3.9</p></td>
+<td><p>4.3</p></td>
+<td><p>65</p></td>
+<td><p>257</p></td>
+</tr>
+<tr class="row-odd"><td><p>Raisins, Dried</p></td>
+<td><p>15 oz.</p></td>
+<td><p>9.4</p></td>
+<td><p>13.5</p></td>
+<td><p>104</p></td>
+<td><p>2.5</p></td>
+<td><p>136</p></td>
+<td><p>4.5</p></td>
+<td><p>6.3</p></td>
+<td><p>1.4</p></td>
+<td><p>24</p></td>
+<td><p>136</p></td>
+</tr>
+<tr class="row-even"><td><p>Peas, Dried</p></td>
+<td><p>1 lb.</p></td>
+<td><p>7.9</p></td>
+<td><p>20.0</p></td>
+<td><p>1367</p></td>
+<td><p>4.2</p></td>
+<td><p>345</p></td>
+<td><p>2.9</p></td>
+<td><p>28.7</p></td>
+<td><p>18.4</p></td>
+<td><p>162</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lima Beans, Dried</p></td>
+<td><p>1 lb.</p></td>
+<td><p>8.9</p></td>
+<td><p>17.4</p></td>
+<td><p>1055</p></td>
+<td><p>3.7</p></td>
+<td><p>459</p></td>
+<td><p>5.1</p></td>
+<td><p>26.9</p></td>
+<td><p>38.2</p></td>
+<td><p>93</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Navy Beans, Dried</p></td>
+<td><p>1 lb.</p></td>
+<td><p>5.9</p></td>
+<td><p>26.9</p></td>
+<td><p>1691</p></td>
+<td><p>11.4</p></td>
+<td><p>792</p></td>
+<td><p>0</p></td>
+<td><p>38.4</p></td>
+<td><p>24.6</p></td>
+<td><p>217</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Coffee</p></td>
+<td><p>1 lb.</p></td>
+<td><p>22.4</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>4</p></td>
+<td><p>5.1</p></td>
+<td><p>50</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Tea</p></td>
+<td><p>1/4 lb.</p></td>
+<td><p>17.4</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>2.3</p></td>
+<td><p>42</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cocoa</p></td>
+<td><p>8 oz.</p></td>
+<td><p>8.6</p></td>
+<td><p>8.7</p></td>
+<td><p>237</p></td>
+<td><p>3</p></td>
+<td><p>72</p></td>
+<td><p>0</p></td>
+<td><p>2</p></td>
+<td><p>11.9</p></td>
+<td><p>40</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Chocolate</p></td>
+<td><p>8 oz.</p></td>
+<td><p>16.2</p></td>
+<td><p>8.0</p></td>
+<td><p>77</p></td>
+<td><p>1.3</p></td>
+<td><p>39</p></td>
+<td><p>0</p></td>
+<td><p>0.9</p></td>
+<td><p>3.4</p></td>
+<td><p>14</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sugar</p></td>
+<td><p>10 lb.</p></td>
+<td><p>51.7</p></td>
+<td><p>34.9</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>01</p></td>
+</tr>
+<tr class="row-even"><td><p>Corn Syrup</p></td>
+<td><p>24 oz.</p></td>
+<td><p>13.7</p></td>
+<td><p>14.7</p></td>
+<td><p>0</p></td>
+<td><p>0.5</p></td>
+<td><p>74</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>5</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Molasses</p></td>
+<td><p>18 oz.</p></td>
+<td><p>13.6</p></td>
+<td><p>9.0</p></td>
+<td><p>0</p></td>
+<td><p>10.3</p></td>
+<td><p>244</p></td>
+<td><p>0</p></td>
+<td><p>1.9</p></td>
+<td><p>7.5</p></td>
+<td><p>146</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>Strawberry Preserves</p></td>
+<td><p>1 lb.</p></td>
+<td><p>20.5</p></td>
+<td><p>6.4</p></td>
+<td><p>11</p></td>
+<td><p>0.4</p></td>
+<td><p>7</p></td>
+<td><p>0.2</p></td>
+<td><p>0.2</p></td>
+<td><p>0.4</p></td>
+<td><p>3</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>Como todos los nutrientes se han normalizado por el precio, nuestro objetivo es simplemente minimizar la suma de alimentos.</p>
+<p>En 1944 Stigler encontró una dieta que costaba 39,93 dólares al año, en dólares de 1939. En 1947, Jack Laderman utilizó el método simplex (entonces, un invento reciente) para determinar la solución óptima. Se necesitaron 120 días de trabajo de nueve empleados con calculadoras de escritorio para llegar a la respuesta.</p>
+<p>Las siguientes secciones presentan un programa en Python que resuelve el problema de la dieta de Stigler.</p>
+<p>Lo primero que debemos incorporar son los datos del problema</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">[</span><span class="s1">&#39;Wheat Flour (Enriched)&#39;</span><span class="p">,</span> <span class="s1">&#39;10 lb.&#39;</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mf">44.7</span><span class="p">,</span> <span class="mi">1411</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">365</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">55.4</span><span class="p">,</span> <span class="mf">33.3</span><span class="p">,</span> <span class="mi">441</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Macaroni&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">14.1</span><span class="p">,</span> <span class="mf">11.6</span><span class="p">,</span> <span class="mi">418</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Wheat Cereal (Enriched)&#39;</span><span class="p">,</span> <span class="s1">&#39;28 oz.&#39;</span><span class="p">,</span> <span class="mf">24.2</span><span class="p">,</span> <span class="mf">11.8</span><span class="p">,</span> <span class="mi">377</span><span class="p">,</span> <span class="mf">14.4</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">14.4</span><span class="p">,</span> <span class="mf">8.8</span><span class="p">,</span> <span class="mi">114</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Corn Flakes&#39;</span><span class="p">,</span> <span class="s1">&#39;8 oz.&#39;</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="mf">11.4</span><span class="p">,</span> <span class="mi">252</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Corn Meal&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">4.6</span><span class="p">,</span> <span class="mf">36.0</span><span class="p">,</span> <span class="mi">897</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mf">30.9</span><span class="p">,</span> <span class="mf">17.4</span><span class="p">,</span> <span class="mf">7.9</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Hominy Grits&#39;</span><span class="p">,</span> <span class="s1">&#39;24 oz.&#39;</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">,</span> <span class="mf">28.6</span><span class="p">,</span> <span class="mi">680</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">10.6</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Rice&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">21.2</span><span class="p">,</span> <span class="mi">460</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">4.8</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Rolled Oats&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="mf">25.3</span><span class="p">,</span> <span class="mi">907</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mi">341</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">37.1</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;White Bread (Enriched)&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">7.9</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mi">488</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">115</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">13.8</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Whole Wheat Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">9.1</span><span class="p">,</span> <span class="mf">12.2</span><span class="p">,</span> <span class="mi">484</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">13.9</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Rye Bread&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">9.1</span><span class="p">,</span> <span class="mf">12.4</span><span class="p">,</span> <span class="mi">439</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">9.9</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Pound Cake&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">24.8</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mi">130</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mf">18.9</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Soda Crackers&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">15.1</span><span class="p">,</span> <span class="mf">12.5</span><span class="p">,</span> <span class="mi">288</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Milk&#39;</span><span class="p">,</span> <span class="s1">&#39;1 qt.&#39;</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mf">10.5</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mf">16.8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">177</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Evaporated Milk (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;14.5 oz.&#39;</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="mf">8.4</span><span class="p">,</span> <span class="mi">422</span><span class="p">,</span> <span class="mf">15.1</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">23.5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Butter&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">30.8</span><span class="p">,</span> <span class="mf">10.8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">44.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Oleomargarine&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">16.1</span><span class="p">,</span> <span class="mf">20.6</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">55.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Eggs&#39;</span><span class="p">,</span> <span class="s1">&#39;1 doz.&#39;</span><span class="p">,</span> <span class="mf">32.6</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mi">238</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mf">18.6</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">6.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Cheese (Cheddar)&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">24.2</span><span class="p">,</span> <span class="mf">7.4</span><span class="p">,</span> <span class="mi">448</span><span class="p">,</span> <span class="mf">16.4</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mf">28.1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">10.3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Cream&#39;</span><span class="p">,</span> <span class="s1">&#39;1/2 pt.&#39;</span><span class="p">,</span> <span class="mf">14.1</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">16.9</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Peanut Butter&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">17.9</span><span class="p">,</span> <span class="mf">15.7</span><span class="p">,</span> <span class="mi">661</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">9.6</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="mi">471</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Mayonnaise&#39;</span><span class="p">,</span> <span class="s1">&#39;1/2 pt.&#39;</span><span class="p">,</span> <span class="mf">16.7</span><span class="p">,</span> <span class="mf">8.6</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Crisco&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">20.3</span><span class="p">,</span> <span class="mf">20.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Lard&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">9.8</span><span class="p">,</span> <span class="mf">41.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Sirloin Steak&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">39.6</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Round Steak&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">36.4</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">214</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Rib Roast&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">29.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Chuck Roast&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">22.6</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mi">309</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Plate&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">14.6</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">,</span> <span class="mi">404</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">62</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Liver (Beef)&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">26.8</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">139</span><span class="p">,</span> <span class="mf">169.2</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mf">50.8</span><span class="p">,</span> <span class="mi">316</span><span class="p">,</span> <span class="mi">525</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Leg of Lamb&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">27.6</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Lamb Chops (Rib)&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">36.6</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Pork Chops&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">30.7</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">17.4</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Pork Loin Roast&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">24.2</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mi">249</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">18.2</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Bacon&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">25.6</span><span class="p">,</span> <span class="mf">10.4</span><span class="p">,</span> <span class="mi">152</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Ham, smoked&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">27.4</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">9.9</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Salt Pork&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mf">18.8</span><span class="p">,</span> <span class="mi">164</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Roasting Chicken&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">30.3</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">46</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Veal Cutlets&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">42.3</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mi">156</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Salmon, Pink (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;16 oz.&#39;</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mi">705</span><span class="p">,</span> <span class="mf">6.8</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mi">209</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Apples&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">544</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Bananas&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">17.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">498</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Lemons&#39;</span><span class="p">,</span> <span class="s1">&#39;1 doz.&#39;</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">952</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Oranges&#39;</span><span class="p">,</span> <span class="s1">&#39;1 doz.&#39;</span><span class="p">,</span> <span class="mf">30.9</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mf">11.1</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1998</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Green Beans&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mi">138</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">862</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Cabbage&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mi">125</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mf">7.2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">5369</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Carrots&#39;</span><span class="p">,</span> <span class="s1">&#39;1 bunch&#39;</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mf">188.5</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">608</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Celery&#39;</span><span class="p">,</span> <span class="s1">&#39;1 stalk&#39;</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">313</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Lettuce&#39;</span><span class="p">,</span> <span class="s1">&#39;1 head&#39;</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mf">112.4</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">449</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Onions&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mi">166</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mf">16.6</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1184</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Potatoes&#39;</span><span class="p">,</span> <span class="s1">&#39;15 lb.&#39;</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mf">14.3</span><span class="p">,</span> <span class="mi">336</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mi">118</span><span class="p">,</span> <span class="mf">6.7</span><span class="p">,</span> <span class="mf">29.4</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="mi">198</span><span class="p">,</span> <span class="mi">2522</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Spinach&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">8.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">138</span><span class="p">,</span> <span class="mf">918.4</span><span class="p">,</span> <span class="mf">5.7</span><span class="p">,</span> <span class="mf">13.8</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">2755</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Sweet Potatoes&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mf">9.6</span><span class="p">,</span> <span class="mi">138</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mf">290.7</span><span class="p">,</span> <span class="mf">8.4</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mi">83</span><span class="p">,</span> <span class="mi">1912</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Peaches (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;No. 2 1/2&#39;</span><span class="p">,</span> <span class="mf">16.8</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">21.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">196</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Pears (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;No. 2 1/2&#39;</span><span class="p">,</span> <span class="mf">20.4</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">81</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Pineapple (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;No. 2 1/2&#39;</span><span class="p">,</span> <span class="mf">21.3</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">399</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Asparagus (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;No. 2&#39;</span><span class="p">,</span> <span class="mf">27.7</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mf">16.3</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">272</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Green Beans (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;No. 2&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mf">53.9</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">431</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Pork and Beans (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;16 oz.&#39;</span><span class="p">,</span> <span class="mf">7.1</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">364</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">8.3</span><span class="p">,</span> <span class="mf">7.7</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Corn (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;No. 2&#39;</span><span class="p">,</span> <span class="mf">10.4</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mi">136</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">218</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Peas (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;No. 2&#39;</span><span class="p">,</span> <span class="mf">13.8</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mi">136</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mf">34.9</span><span class="p">,</span> <span class="mf">4.9</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">370</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Tomatoes (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;No. 2&#39;</span><span class="p">,</span> <span class="mf">8.6</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mf">53.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">1253</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Tomato Soup (can)&#39;</span><span class="p">,</span> <span class="s1">&#39;10 1/2 oz.&#39;</span><span class="p">,</span> <span class="mf">7.6</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mf">57.9</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">862</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Peaches, Dried&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">15.7</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mf">86.8</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">57</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Prunes, Dried&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mf">12.8</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span> <span class="mf">85.7</span><span class="p">,</span> <span class="mf">3.9</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">257</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Raisins, Dried&#39;</span><span class="p">,</span> <span class="s1">&#39;15 oz.&#39;</span><span class="p">,</span> <span class="mf">9.4</span><span class="p">,</span> <span class="mf">13.5</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">136</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">,</span> <span class="mf">1.4</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">136</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Peas, Dried&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">7.9</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mi">1367</span><span class="p">,</span> <span class="mf">4.2</span><span class="p">,</span> <span class="mi">345</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">,</span> <span class="mf">28.7</span><span class="p">,</span> <span class="mf">18.4</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Lima Beans, Dried&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">17.4</span><span class="p">,</span> <span class="mi">1055</span><span class="p">,</span> <span class="mf">3.7</span><span class="p">,</span> <span class="mi">459</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mf">26.9</span><span class="p">,</span> <span class="mf">38.2</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Navy Beans, Dried&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">,</span> <span class="mf">26.9</span><span class="p">,</span> <span class="mi">1691</span><span class="p">,</span> <span class="mf">11.4</span><span class="p">,</span> <span class="mi">792</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">38.4</span><span class="p">,</span> <span class="mf">24.6</span><span class="p">,</span> <span class="mi">217</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Coffee&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">22.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">5.1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Tea&#39;</span><span class="p">,</span> <span class="s1">&#39;1/4 lb.&#39;</span><span class="p">,</span> <span class="mf">17.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Cocoa&#39;</span><span class="p">,</span> <span class="s1">&#39;8 oz.&#39;</span><span class="p">,</span> <span class="mf">8.6</span><span class="p">,</span> <span class="mf">8.7</span><span class="p">,</span> <span class="mi">237</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">11.9</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Chocolate&#39;</span><span class="p">,</span> <span class="s1">&#39;8 oz.&#39;</span><span class="p">,</span> <span class="mf">16.2</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Sugar&#39;</span><span class="p">,</span> <span class="s1">&#39;10 lb.&#39;</span><span class="p">,</span> <span class="mf">51.7</span><span class="p">,</span> <span class="mf">34.9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Corn Syrup&#39;</span><span class="p">,</span> <span class="s1">&#39;24 oz.&#39;</span><span class="p">,</span> <span class="mf">13.7</span><span class="p">,</span> <span class="mf">14.7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">74</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Molasses&#39;</span><span class="p">,</span> <span class="s1">&#39;18 oz.&#39;</span><span class="p">,</span> <span class="mf">13.6</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">10.3</span><span class="p">,</span> <span class="mi">244</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="s1">&#39;Strawberry Preserves&#39;</span><span class="p">,</span> <span class="s1">&#39;1 lb.&#39;</span><span class="p">,</span> <span class="mf">20.5</span><span class="p">,</span> <span class="mf">6.4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]];</span>
+
+<span class="c1"># Nutrientes mínimos.</span>
+<span class="n">nutrients</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;Calories (1000s)&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Protein (grams)&#39;</span><span class="p">,</span> <span class="mi">70</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Calcium (grams)&#39;</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Iron (mg)&#39;</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Vitamin A (1000 IU)&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Vitamin B1 (mg)&#39;</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Vitamin B2 (mg)&#39;</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Niacin (mg)&#39;</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;Vitamin C (mg)&#39;</span><span class="p">,</span> <span class="mi">75</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación creamos las variables con las que se va a trabajar para resolver este problema</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ortools.linear_solver</span> <span class="kn">import</span> <span class="n">pywraplp</span>
+
+<span class="c1">#Creamos al solver</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="p">(</span><span class="s1">&#39;SolveStigler&#39;</span><span class="p">,</span>
+                         <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">GLOP_LINEAR_PROGRAMMING</span><span class="p">)</span>
+
+<span class="n">food</span> <span class="o">=</span> <span class="p">[[]]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Objective: minimize the sum of (price-normalized) foods.</span>
+<span class="n">objective</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+  <span class="n">food</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVar</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">(),</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+  <span class="n">objective</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetMinimization</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>El método <em>MakeNumVar</em> crea una variable, food[i], para cada fila de la tabla. Como se ha mencionado anteriormente, los datos nutricionales son por dólar, por lo que food[i] es la cantidad de dinero a gastar en el alimento i.</p>
+<p>La función objetivo es el coste total de la comida, que es la suma de las variables food[i].</p>
+<p>El método <em>SetCoefficient</em> establece los coeficientes de la función objetivo, que en este caso son todos 1. Por último, el método <em>SetMinimization</em> declara que se trata de <strong>un problema de minimización</strong>.</p>
+<p>A continuación definimos las restricciones. Hay que tener en cuenta que las restricciones de la dieta de Stigler exigen que la cantidad total de nutrientes aportada por todos los alimentos sea al menos el requisito mínimo de cada nutriente. A continuación, escribimos estas restricciones como desigualdades que implican las matrices datos y nutrientes, y las variables alimento[i].</p>
+<p>En primer lugar, la cantidad de nutriente i proporcionada por el alimento j por dólar es data[j][i+3] (añadimos 3 al índice de la columna porque los datos del nutriente comienzan en la cuarta columna de data). Dado que la cantidad de dinero que se va a gastar en el alimento j es el alimento[j], la cantidad de nutriente i que proporciona el alimento j es ( datos[j][i+3] \cdot alimento[j] \cdot). Por último, como el requisito mínimo del nutriente i es nutrientes[i][1], podemos escribir la restricción i de la siguiente manera [ \sum_{j} datos[j][i+3] \cdot alimento[j] \geq nutrientes[i][1] ;\cdot; (1) \cdot] El siguiente código define estas restricciones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos las restricciones, una por nutriente.</span>
+<span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nutrients</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nutrients</span><span class="p">)):</span>
+  <span class="n">constraints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">nutrients</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">())</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+    <span class="n">constraints</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">food</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora ya sólo nos queda ejecutar el solver y resolver el problema</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">solver</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+  <span class="c1"># Mostrar la cantidad (en dolares) a comprar para cada alimento.</span>
+  <span class="n">price</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">num_nutrients</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="mi">3</span>
+  <span class="n">nutrients</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+    <span class="n">price</span> <span class="o">+=</span> <span class="n">food</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">solution_value</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">nutrient</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_nutrients</span><span class="p">):</span>
+      <span class="n">nutrients</span><span class="p">[</span><span class="n">nutrient</span><span class="p">]</span> <span class="o">+=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">nutrient</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">food</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">solution_value</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">food</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">solution_value</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> = </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">food</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">solution_value</span><span class="p">()))</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Precio óptimo anual: $</span><span class="si">%.2f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">365</span> <span class="o">*</span> <span class="n">price</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>  <span class="c1"># No se ha encontrado una solución óptima</span>
+  <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">solver</span><span class="o">.</span><span class="n">FEASIBLE</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Se encontró una solución potencialmente subóptima.&#39;</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No se puede encontrar solución al problema.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wheat Flour (Enriched) = 0.029519
+Liver (Beef) = 0.001893
+Cabbage = 0.011214
+Spinach = 0.005008
+Navy Beans, Dried = 0.061029
+Precio óptimo anual: $39.66
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="optimizacion-entera">
+<h1><span class="section-number">3. </span>Optimización entera.<a class="headerlink" href="#optimizacion-entera" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2><span class="section-number">3.1. </span>Introducción.<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Un problema de programación lineal entera ( PLE ) es un problema  de optimización de una función lineal en presencia de restricciones lineales con la condición añadida de que alguna o todas sus variables han de ser enteras. Si todas las variables presentes en el problema están obligadas a tomar valores enteros, estaremos ante un <em>problema de programación entera puro</em>. Si la restricción de integridad afecta sólo a algunas variables diremos que el <em>problema es de programación entera mixta</em>.</p>
+<p>En ocasiones las variables enteras están limitadas a tomar valores 0 ó 1, que se denominarán variables binarias. Si esta condición es extensiva a todas las variables del problema estaremos ante un <em>problema de programación 0-1 puro</em>. Si afecta sólo a alguna variable presente en el modelo, hablaremos de un <em>problema de programación 0-1 mixta</em>.</p>
+<p>Los problemas de programación entera en general, presentan grandes dificultades de tiempo de computación. El método símplex, tan eficaz en programación lineal, deja de ser válido cuando se busca una solución exacta de un problema de programación entera, ya sea pura o mixta. Para estos problemas debemos recurrir a otros métodos de resolución, como puede ser el algoritmo branch-and-bound o algoritmos de planos de corte. Los métodos utilizados por las herramientas facilitadas en OR_Tools, suelen ser bastante eficientes para lograr las soluciones óptimas a los problemas que se puedan plantear.</p>
+<p>Este apartado está dedicado a la formulación de problemas de programación lineal con presencia de variables enteras o binarias, y en especial a la modelización de condiciones o restricciones lógicas, muy habituales en la práctica. Hay dos grandes áreas de aplicaciones reales donde surgen estos problemas de programación entera. Por un lado, los problemas de optimización combinatorial, generalmente se pueden modelar como problemas de programación pura, bien con variables binarias o bien con variables enteras generales. A este grupo pertenecen los problemas de asignación, problemas de cargas y empaquetamiento, problemas de rutas de vehículos, problemas de secuencia de tareas, problemas de corte de materiales, muchos problemas de localización de plantas, almacenes y servicios, y una multitud de problemas donde la decisión de incluir un objeto (almacén, ruta, etc.) se modela con una variable binaria.</p>
+<p>Por otro lado, es muy habitual en la práctica la <em>presencia de restricciones lógicas</em>, lo que hace que muchos modelos, en principio de programación continua, se conviertan en modelos de programación mixta, por la presencia de variables auxiliares de tipo lógico. Todo esto hace que algunos autores consideren que más del 90 por ciento de las aplicaciones reales de optimización conduzcan a modelos de programación entera, pura o mixta.</p>
+<p>OR-Tools, denomina a este tipo de problemas de tipo MIP (  Mixed Integer Program ) y ofrece dos métodos para resolverlos.</p>
+<p>1.- MPSolver. Una envoltura para varios solucionadores MIP de terceros, que utilizan técnicas estándar de branch-and-bound.</p>
+<p>2.- CP-SAT solver. Utiliza SAT para resolver los problemas.</p>
+<p>No hay una regla infalible para decidir si se utiliza un solucionador MIP o el solucionador CP-SAT. Como guía aproximada, se puede tener en cuenta lo siguiente:</p>
+<ul class="simple">
+<li><p>Los solucionadores MIP son más adecuados para los problemas que se pueden plantear como un LP estándar, pero con variables enteras arbitrarias.</p></li>
+<li><p>El solucionador CP-SAT es más adecuado para problemas en los que la mayoría de las variables son booleanas.</p></li>
+</ul>
+</div>
+<div class="section" id="programacion-entera-pura-condiciones-logicas">
+<h2><span class="section-number">3.2. </span>Programación entera pura: condiciones lógicas.<a class="headerlink" href="#programacion-entera-pura-condiciones-logicas" title="Permalink to this headline">¶</a></h2>
+<p>Veamos un ejemplo concreto de este tipo de problemas. Una empresa está planificando la inversión a realizar en los próximos 3 trimestres en 5 proyectos de investigación. En la siguiente tabla aparece detallado el presupuesto disponible por trimestre, la inversión que se debe realizar por proyecto y trimestre, y el beneficio que se espera obtener por cada proyecto. Todos los datos aparecen en millones de euros.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Proyecto</p></th>
+<th class="head"><p>T1</p></th>
+<th class="head"><p>T2</p></th>
+<th class="head"><p>T3</p></th>
+<th class="head"><p>Beneficio</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>5</p></td>
+<td><p>1</p></td>
+<td><p>8</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>7</p></td>
+<td><p>10</p></td>
+<td><p>40</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>3</p></td>
+<td><p>9</p></td>
+<td><p>2</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>7</p></td>
+<td><p>4</p></td>
+<td><p>1</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>8</p></td>
+<td><p>6</p></td>
+<td><p>10</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Presupuesto disponible</p></td>
+<td><p>25</p></td>
+<td><p>25</p></td>
+<td><p>25</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Se desea conocer los proyectos en los que se debe invertir para maximizar el beneficio obtenido. Hay hay que tener presente que no buscamos la cantidad a invertir en cada proyecto puesto que esta cantidad es fija y sólo depende del proyecto elegido. La única decisión que debemos tomar es si invertimos o no en un proyecto u otro con el fin de obtener el mayor beneficio posible sin superar el presupuesto disponible. En este se considerarán las variables 0-1 siguientes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+x_{i}=\begin{cases}
+1 &amp; si\,se\,invierte\,en\,el\,proyecto\,i\\
+0 &amp; si\,no\,se\,invierte\,en\,el\,proyecto\,i
+\end{cases}
+\end{split}\]</div>
+<p>Entonces el modelo matemático a resolver sería el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+max\quad20x_{1}+40x_{2}+20x_{3}+15x_{4}+30x_{5}\\
+s.t\\
+5x_{1}+4x_{2}+3x_{3}+7x_{4}+8x_{5}\leq25\\
+x_{1}+7x_{2}+9x_{3}+4x_{4}+6x_{5}\leq25\\
+8x_{1}+10x_{2}+2x_{3}+x_{4}+10x_{5}\leq25\\
+x_{1},x_{2},x_{3},x_{4},x_{5}\epsilon\{0,1\}
+\end{align*}
+\end{split}\]</div>
+<p>Todas las variables presentes en este problema están restringidas a tomar los valores enteros 0 ó 1, luego estamos ante un problema de programación 0-1 pura. La solución a este problema es invertir en todos los proyectos salvo en el 5, obteniéndose un beneficio de 95 millones de euros.</p>
+<p>Supóngase que la dirección de la empresa impone algunas de las siguientes condiciones sobre la inversión.</p>
+<p>1.- Se debe invertir como mucho en tres proyectos.</p>
+<p>2.- Se debe invertir o en el proyecto 1 o en el 5 ( o en ambos)</p>
+<p>3.- Si se invierte en el proyecto 4 se debe invertir en el 3.</p>
+<p>4.- Si se invierte en los proyectos 2 ó 3 se debe invertir en el proyecto 5.</p>
+<p>¿ Cómo se incluyen esas condiciones en el modelo matemático ?. Formalizar la primera de las condiciones es sencillo. Téngase en cuenta que la suma de todas las variables no dará el número de proyectos en los que vayamos a invertir. Bastará entonces añadir al modelo la siguiente restricción: <span class="math notranslate nohighlight">\(x_{1}+x_{2}+x_{3}+x_{4}+x_{5}\leq3\)</span>.</p>
+<p>La decisión de invertir o en el proyecto 1 o en el 5 es equivalente a que en la solución óptima aparezca <span class="math notranslate nohighlight">\(x_1=1\)</span> o <span class="math notranslate nohighlight">\(x_5=1\)</span> o ambos valores. Si incorporamos a la formulación las restricciones:</p>
+<div class="math notranslate nohighlight">
+\[x_{1}\geq1,x_{5}\geq1\]</div>
+<p>estaremos obligando a que <span class="math notranslate nohighlight">\(x_1=x_5=1\)</span> y esta solución no respeta la decisión tomada. Ahora bien, la expresión:</p>
+<div class="math notranslate nohighlight">
+\[x_1+x_5\geq1\]</div>
+<p>refleja fielmente la condición de invertir e uno u otro proyecto o en ambos.</p>
+<p>La tercera condición es equivalente a la siguiente condición lógica: si <span class="math notranslate nohighlight">\(x_4=1\)</span> entonces <span class="math notranslate nohighlight">\(x_3=1\)</span>. Como nuestras variables sólo pueden tomar los valores 0 ó 1, esta condición es equivalente a decir que <span class="math notranslate nohighlight">\(x_3\)</span> de tomar por lo menos el valor de <span class="math notranslate nohighlight">\(x_4\)</span>, es decir:</p>
+<div class="math notranslate nohighlight">
+\[x_3\geq x_4\]</div>
+<p>Por último y una vez aclarado el punto anterior, resulta sencillo formalizar matemáticamente la cuarta condición.</p>
+<div class="math notranslate nohighlight">
+\[x_5\geq x_2\,y\,x_5\geq x_3\]</div>
+<p>Obsérvese que si añadimos la restricción <span class="math notranslate nohighlight">\(x_1+x_3\geq x_5\)</span>, el lado izquierdo puede tomar el valor 2 si se decide invertir en los proyectos 2 y 3, mientras que la variable <span class="math notranslate nohighlight">\(x_5\)</span> como mucho puede valer 1.</p>
+<p>Otra forma de incluir este última condición, puede ser mediante la restricción siguiente:</p>
+<div class="math notranslate nohighlight">
+\[x_2+x_3\leq2x_5\]</div>
+</div>
+<div class="section" id="ejemplo-programacion-entera-pura">
+<h2><span class="section-number">3.3. </span>Ejemplo programación entera pura.<a class="headerlink" href="#ejemplo-programacion-entera-pura" title="Permalink to this headline">¶</a></h2>
+<p>En este apartado vamos a ver cómo se puede plantear un problema de programación entera utilizando OR-Tools.</p>
+<p>El problema que se resolverá será el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+max\quad x+10y\\
+s.t\\
+x+7y\leq17.5\\
+x\leq3.5\\
+x,y\geq0\\
+x,y\qquad
+\end{align*}
+\end{split}\]</div>
+<p>Lo primero que se deberá hacer es cargar las herramientas necesarias.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ortools.linear_solver</span> <span class="kn">import</span> <span class="n">pywraplp</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación se deberá declarar el tipo de <em>solver</em> que queremos utilizar. En este caso como el problema va a ser de programación entera pura, se utilizará el denominado SCIP</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargamos al solver denominado SCIP Create the mip solver with the SCIP backend.</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">CreateSolver</span><span class="p">(</span><span class="s1">&#39;SCIP&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación se procede a definir las variables. Observar que a diferencia de los problemas de programación lineal que se han expuesto en apartados anteriores, aquí se definen las variables con la propiedad <em>“.IntVar”</em> para indicar que son variables que sólo toman valores enteros.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infinity</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">()</span>
+<span class="c1"># x and y are integer non-negative variables.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">IntVar</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">infinity</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">IntVar</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">infinity</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número total de variables=&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVariables</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número total de variables= 2
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación se definen las restricciones</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># x + 7 * y &lt;= 17.5.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">*</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mf">17.5</span><span class="p">)</span>
+
+<span class="c1"># x &lt;= 3.5.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">3.5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número total de restricciones =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumConstraints</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número total de restricciones = 2
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se define la función objetivo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Maximizar x + 10 * y.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">Maximize</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se llama al solver y finalmente se muestra la solución</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Solución:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Valor función objetivo =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x =&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y =&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;El problema no tiene una solución óptima.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solución:
+Valor función objetivo = 23.0
+x = 3.0
+y = 2.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="utilizando-arrays-para-resolucion-de-problemas">
+<h2><span class="section-number">3.4. </span>Utilizando Arrays para resolución de problemas.<a class="headerlink" href="#utilizando-arrays-para-resolucion-de-problemas" title="Permalink to this headline">¶</a></h2>
+<p>Cuando el número de variables a tener en cuenta en la resolución de problemas de programación lineal es importante, ya se ha comentado en apartados anteriores, que se deberá hacer uso de Arrais que contengan las variables necesarias para la resolución de los mismos.</p>
+<p>En este apartado vamos a ver un ejemplo de cómo utilizar esto para resolver un problema de programación entera pura. El problema se define de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+max\quad7x_{1}+8x_{2}+2x_{3}+9x_{4}+6x_{5}\\
+s.t\\
+5x_{1}+7x_{2}+9x_{3}+2x_{4}+x_{5}\leq250\\
+18x_{1}+4x_{2}-9x_{3}+10x_{4}+12x_{5}\leq285\\
+4x_{1}+7x_{2}+3x_{3}+8x_{4}+5x_{5}\leq211\\
+5x_{1}+13x_{2}+16x_{3}+3x_{4}-7x_{5}\leq315\\
+x_{1},x_{2},...,x_{5}\,enteros\,positivos\\
+\end{align*}
+\end{split}\]</div>
+<p>Para resolver este problema, primero creamos los valores que vamos a necesitar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_data_model</span><span class="p">():</span>
+  <span class="sd">&quot;&quot;&quot;Stores the data for the problem.&quot;&quot;&quot;</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="n">data</span><span class="p">[</span><span class="s1">&#39;constraint_coeffs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+      <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">],</span>
+  <span class="p">]</span>
+  <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bounds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">285</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">315</span><span class="p">]</span>
+  <span class="n">data</span><span class="p">[</span><span class="s1">&#39;obj_coeffs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+  <span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_vars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+  <span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_constraints&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+  <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">create_data_model</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora se procede a definir las variables</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">infinity</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">infinity</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_vars&#39;</span><span class="p">]):</span>
+  <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">IntVar</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">infinity</span><span class="p">,</span> <span class="s1">&#39;x[</span><span class="si">%i</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">j</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Numero total de variables =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumVariables</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numero total de variables = 7
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación se definen las restricciones. El  código que crea las restricciones para el anterior ejemplo, utilizando el método <em>RowConstraint</em> . Los dos primeros argumentos del método son los límites inferior y superior de la restricción. El tercer argumento, un nombre para la restricción, es opcional.</p>
+<p>Para cada restricción, se definen los coeficientes de las variables mediante el método <em>SetCoefficient</em>. El método asigna el coeficiente de la variable x[j] en la restricción i a la entrada [i][j] del array constraint_coeffs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_constraints&#39;</span><span class="p">]):</span>
+  <span class="n">constraint</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">RowConstraint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;bounds&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_vars&#39;</span><span class="p">]):</span>
+    <span class="n">constraint</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;constraint_coeffs&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Número total de restricciones =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">NumConstraints</span><span class="p">())</span>
+<span class="c1"># En Python, también se pueden construir las restricciones de la siguiente manera.</span>
+<span class="c1"># for i in range(data[&#39;num_constraints&#39;]):</span>
+<span class="c1">#  constraint_expr = \</span>
+<span class="c1"># [data[&#39;constraint_coeffs&#39;][i][j] * x[j] for j in range(data[&#39;num_vars&#39;])]</span>
+<span class="c1">#  solver.Add(sum(constraint_expr) &lt;= data[&#39;bounds&#39;][i])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Número total de restricciones = 6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">continuación</span> <span class="n">se</span> <span class="n">define</span> <span class="n">la</span> <span class="n">función</span> <span class="n">objetivo</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-28-e282fa37acce&gt;&quot;</span><span class="gt">, line </span><span class="mi">1</span>
+    <span class="n">A</span> <span class="n">continuación</span> <span class="n">se</span> <span class="n">define</span> <span class="n">la</span> <span class="n">función</span> <span class="n">objetivo</span>
+                 <span class="o">^</span>
+<span class="ne">SyntaxError</span>: invalid syntax
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">objective</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_vars&#39;</span><span class="p">]):</span>
+  <span class="n">objective</span><span class="o">.</span><span class="n">SetCoefficient</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;obj_coeffs&#39;</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+<span class="n">objective</span><span class="o">.</span><span class="n">SetMaximization</span><span class="p">()</span>
+<span class="c1"># En python también se puede definir de la siguiente manera.</span>
+<span class="c1"># obj_expr = [data[&#39;obj_coeffs&#39;][j] * x[j] for j in range(data[&#39;num_vars&#39;])]</span>
+<span class="c1"># solver.Maximize(solver.Sum(obj_expr))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y finalmente, se llama al solver y se muestra la solución</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">Solve</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="n">pywraplp</span><span class="o">.</span><span class="n">Solver</span><span class="o">.</span><span class="n">OPTIMAL</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Valor función objetivo =&#39;</span><span class="p">,</span> <span class="n">solver</span><span class="o">.</span><span class="n">Objective</span><span class="p">()</span><span class="o">.</span><span class="n">Value</span><span class="p">())</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;num_vars&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="s1">&#39; = &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">solution_value</span><span class="p">())</span>
+  <span class="nb">print</span><span class="p">()</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Problema resuelto en </span><span class="si">%f</span><span class="s1"> millisegundos&#39;</span> <span class="o">%</span> <span class="n">solver</span><span class="o">.</span><span class="n">wall_time</span><span class="p">())</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Problema resuelto en </span><span class="si">%d</span><span class="s1"> iteraciones&#39;</span> <span class="o">%</span> <span class="n">solver</span><span class="o">.</span><span class="n">iterations</span><span class="p">())</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Problema resuelto en </span><span class="si">%d</span><span class="s1"> branch-and-bound nodos&#39;</span> <span class="o">%</span> <span class="n">solver</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No se ha encontrado solución al problema.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Valor función objetivo = 283.0
+x[0]  =  8.0
+x[1]  =  20.0
+x[2]  =  1.0
+x[3]  =  2.0
+x[4]  =  4.0
+
+Problema resuelto en 2290846.000000 millisegundos
+Problema resuelto en 65 iteraciones
+Problema resuelto en 9 branch-and-bound nodos
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="programacion-entera-mixta-costes-fijos-y-condiciones-logicas">
+<h2><span class="section-number">3.5. </span>Programación entera mixta: costes fijos y condiciones lógicas.<a class="headerlink" href="#programacion-entera-mixta-costes-fijos-y-condiciones-logicas" title="Permalink to this headline">¶</a></h2>
+<p>Para mejor entender este apartado, procederemos primero a enunciar el siguiente problema.</p>
+<p>Una pequeña empresa puede producir 4 tipos de artículos y estima que para el próximo periodo podrá vender todo lo que fabrica de los productos 1 y 3, pero como mucho tendrá demanda para 30 unidades del producto 2 y 10 del produco 4. La empresa tiene capacidad para producir un máximo de 110 artículos de cualquier tipo y combinación. A continuación se detalla el coste de producción por unidad producida, el coste fijo de producción y el precio de venta unitario de cada artículo.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Producto</p></th>
+<th class="head"><p>Coste de <br/> producción</p></th>
+<th class="head"><p>Coste fijo</p></th>
+<th class="head"><p>P.V.P</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>300</p></td>
+<td><p>60</p></td>
+<td><p>450</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>450</p></td>
+<td><p>20</p></td>
+<td><p>650</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>500</p></td>
+<td><p>70</p></td>
+<td><p>600</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>200</p></td>
+<td><p>60</p></td>
+<td><p>450</p></td>
+</tr>
+</tbody>
+</table>
+<p>Se pide formular el modelo matemático para determinar las unidades que se deben producir de cada artículo para maximizar los beneficios de la empresa.</p>
+<p>Para resolver este problema,si se va a utilizar únicamente la variable <span class="math notranslate nohighlight">\(x_i\)</span> = unidades del producto i que debe fabricar el próximo periodo, la función de beneficios no se podrá formular correctamente. Téngase en cuenta que los costes fijos no dependen de la cantidad producida, como en el caso de los costes de producción, sino de la decisión de producir o no producir. Necesitamos por lo tanto variables que hagan referencia a esta decisión:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y_{i}=\begin{cases}
+1 &amp; si\,se\,fabrica\,el\,art\acute{\imath}culo\,i\\
+0 &amp; si\,no\,se\,fabrica\,el\,art\acute{\imath}culo\,i
+\end{cases}
+\end{split}\]</div>
+<p>Podríamos inicialmente formular el problema de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+max\;150x_{1}+200x_{2}+100x_{3}+250x_{4}-60y_{1}-20y_{2}-70y_{3}-60y_{4}\\
+s.t.\\
+x_{2}\leq30\\
+x_{4}\leq10\\
+x_{i}\geq0\\
+x_{i}\epsilon\{0,1\}
+\end{align*}
+\end{split}\]</div>
+<p>Pero si lo planteamos así, es evidente que la solución óptima es la que tiene los siguientes valores:
+$<span class="math notranslate nohighlight">\(x_1=70,\,x_2=30,\,x_3=0,\,x_4=10 \)</span>$</p>
+<div class="math notranslate nohighlight">
+\[y_1=y_2=y_3=y_4=0\]</div>
+<p>y claramente no respeta la relación entre variables de  producción y variables de decisión ya que estamos produciendo sin incurrir en ningún coste fijo. Esto es debido a que no se ha incluido ninguna relación matemática entre estas variables, esto es, no aparece reflejada la condición “si <span class="math notranslate nohighlight">\(x_i&gt;0\)</span> entonces ha de ser $y_i=1”.</p>
+<p>Para conseguir eso, definimos una constante M arbitrariamente grande, y se consideran las restricciones</p>
+<div class="math notranslate nohighlight">
+\[
+x_{i}\leq My_{i}\quad i=1,2,3,4
+\]</div>
+<p>Si estas desigualdades son añadidas el modelo aseguramos que <span class="math notranslate nohighlight">\(y_i=1\)</span> siempre que <span class="math notranslate nohighlight">\(x_i&gt;0\)</span>. Téngase en cuenta que en caso contrario, obligatoriamente sería <span class="math notranslate nohighlight">\(x_i=0\)</span>. De esta manera, si hay producción del artículo i obligatoriamente se incurre en el coste fijo asociado. No obstante, estas desigualdades pueden ser modificadas: si <span class="math notranslate nohighlight">\(y_i=1\)</span>, la restricción <span class="math notranslate nohighlight">\(x_i\leq My_i\)</span> se traduce en que <span class="math notranslate nohighlight">\(x_i\leq M\)</span>, siendo M una constante suficientemente grande. Teniendo esto presente, el problema se puede formular de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+max\;150x_{1}+200x_{2}+100x_{3}+250x_{4}-60y_{1}-20y_{2}-70y_{3}-60y_{4}\\
+s.t.\\
+x_1 \leq 110y_1\\
+x_{2}\leq30y_2\\
+x_1 \leq 110y_3\\
+x_{4}\leq10y_4\\
+x_{i}\geq0\\
+x_{i}\epsilon\{0,1\}
+\end{align*}
+\end{split}\]</div>
+<p>Supongamos que además el fabricante impone las siguiente condiciones:</p>
+<p>1.- Si se produce el artículo 1 también se debe producir el artículo 2.</p>
+<p>2.- Si se produce del artículo 4 no debe producirse nada del artículo 3</p>
+<p>3.- Se debe producir obligatoriamente de los artículos 2,3,4.</p>
+<p>4.- Si se producen más de 30 unidades del artículo 1, se deben producir al menos 10 unidades del artículo 2.</p>
+<p>5.- Si se producen más de 30 unidades del artículo 1, se deben producir como mucho 10 unidades del artículo 2.</p>
+<p>A continuación se expone cómo incorporar al modelo estas condiciones:</p>
+<p>1.- Debemos expresar que “<span class="math notranslate nohighlight">\(x_{1}&gt;0\Rightarrow x_{2}&gt;0\)</span>”. La restricción <span class="math notranslate nohighlight">\(x_2&gt;0\)</span>, con desigualdad estricta, no se puede usar directamente en optimización, y hay que trasnformarla en restricciones de la forma <span class="math notranslate nohighlight">\(x_2\geq m\)</span>. Entonces se añadirían las restricciones: <span class="math notranslate nohighlight">\(x_1\leq My_1\)</span>, <span class="math notranslate nohighlight">\(x_2\geq my_1\)</span>. De esta manera, se cumple que si <span class="math notranslate nohighlight">\(x_1&gt;0 \Rightarrow y_1=1 \Rightarrow x_2\geq m\)</span>.</p>
+<p>2.- Debemos expresar que si <span class="math notranslate nohighlight">\(x_4&gt;0\)</span> entonces <span class="math notranslate nohighlight">\(x_3=0\)</span>, o lo que es lo mismo, si <span class="math notranslate nohighlight">\(y_4=1\)</span> entonces <span class="math notranslate nohighlight">\(y_3=0\)</span>. No puede darse el caso de que estas últimas variables tomen el valor de 1 cada una de ellas, por lo tanto para reflejar esta restricción se debería añadir la condición <span class="math notranslate nohighlight">\(y_3+y_4 \leq 1\)</span>.</p>
+<p>3.- El producir obligatoriamente esos artículos, es equivalente a añadir la restricción
+$<span class="math notranslate nohighlight">\(y_2+y_3+y_4=3\)</span><span class="math notranslate nohighlight">\(
+o las igualdades:
+\)</span><span class="math notranslate nohighlight">\(y_2=y_3=y_4=1\)</span>$</p>
+<p>4.- Debemos reflejar la relación si <span class="math notranslate nohighlight">\(x_1&gt;30 \Rightarrow x_2\geq 10\)</span>. En este caso necesitamos una variable más que haga referencia al hecho de producir más de 30 unidades del artículo 1, puesto que la variable <span class="math notranslate nohighlight">\(y_1\)</span> sólo indica si hay o no producción del artículo 1. Sea entonces,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+z=\begin{cases}
+1 &amp; si\,x_{1}&gt;30\\
+0 &amp; si\,x_{1}\leq30
+\end{cases}
+\end{split}\]</div>
+<p>Esta relación con la variable <span class="math notranslate nohighlight">\(x_1\)</span> quedará clara añadendo la restricción <span class="math notranslate nohighlight">\(x_1-30\leq Mz\)</span>, siendo M una constante suficientemente grande. Obsérvese que si <span class="math notranslate nohighlight">\(x_1&gt;30\)</span> no puede ser z=0 ya que en este caso, la restricción <span class="math notranslate nohighlight">\(x_1-30 \leq Mz\)</span> es equivalente a <span class="math notranslate nohighlight">\(x_1-30 \leq 0\)</span>. Ahora bastará añadir <span class="math notranslate nohighlight">\(x_2\geq 10z\)</span> con <span class="math notranslate nohighlight">\(z\epsilon\{0,1\}\)</span>, y automáticamente, si z=1 ha de ser <span class="math notranslate nohighlight">\(x_2 \geq 10\)</span>.</p>
+<p>5.- El planteamiento es muy similar al caso anterior. En este caso la condición es equivalente a si <span class="math notranslate nohighlight">\(x_1&gt;30 \Rightarrow x_2\leq 10\)</span>. Y como en el caso anterior se toma</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+z=\begin{cases}
+1 &amp; si\,x_{1}&gt;30\\
+0 &amp; si\,x_{1}\leq30
+\end{cases}
+\end{split}\]</div>
+<p>y <span class="math notranslate nohighlight">\(x_1-30 \leq Mz\)</span> con M constante suficientemente grande. Y en esta ocasión, se añadirá la restricción <span class="math notranslate nohighlight">\(x_2-10 \leq M(1-z)\)</span> con <span class="math notranslate nohighlight">\(z\epsilon\{0,1\}\)</span>.</p>
+<p>Veamos de forma general, cómo implementamos estas restricciones en los problemas de de programación mixta. De forma general, la condición si <span class="math notranslate nohighlight">\(f(x_1,x_2,...,x_n)&gt;0 \Rightarrow g(x_1,x_2,...,x_n)\geq k\)</span>, se formulará del siguiente modo.</p>
+<p>Se define una variable lógica de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+z=\begin{cases}
+1 &amp; si\,f(x_1,...,x_n)&gt;0\\
+0 &amp; si\,f(x_1,...,x_n)\leq0
+\end{cases}
+\end{split}\]</div>
+<p>e incorporamos al modelo las siguientes condiciones:</p>
+<div class="math notranslate nohighlight">
+\[f(x_1,x_2,...,x_n)\leq Mz\]</div>
+<div class="math notranslate nohighlight">
+\[g(x_1,x_2,...,x_n)\geq kz\]</div>
+<div class="math notranslate nohighlight">
+\[z\epsilon\{0,1\} \]</div>
+<p>Recíprocamente, si la condición es <span class="math notranslate nohighlight">\(f(x_1,x_2,...,x_n)&gt;0 \Rightarrow g(x_1,x_2,...,x_n)\leq k\)</span>, entonces las restricciones que se deben incorporar al modelo son las siguientes:</p>
+<div class="math notranslate nohighlight">
+\[f(x_1,x_2,...,x_n)\leq Mz\]</div>
+<div class="math notranslate nohighlight">
+\[g(x_1,x_2,...,x_n)-k\leq M(1-z)\]</div>
+<div class="math notranslate nohighlight">
+\[z\epsilon\{0,1\} \]</div>
+<p>con z como se ha definido anteriormente.</p>
+</div>
+<div class="section" id="costes-fijos-en-produccion-y-redes">
+<h2><span class="section-number">3.6. </span>Costes fijos en producción y redes.<a class="headerlink" href="#costes-fijos-en-produccion-y-redes" title="Permalink to this headline">¶</a></h2>
+<p>Veamos lo comentado en el anterior apartado, pero expresado con carácter general. Consideremos un problema de producción en el que además de los datos habituales (costes de producción, de inventario, capacidad de producción, etc.), tenemos en cuenta los costes fijos de producción. A las variables continuas que representan el nivel de producción e inventario, necesitamos incorporar las variables de tipo 0-1 que hacen referencia a la decisión de producir. Tomaremos las siguientes variables.
+<span class="math notranslate nohighlight">\(x_i\)</span> = unidades que se deben producir del artículo i.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y_{i}=\begin{cases}
+1 &amp; si\,se\,fabrica\,el\,art\acute{\imath}culo\,i\\
+0 &amp; si\,no\,se\,fabrica\,el\,art\acute{\imath}culo\,i
+\end{cases}
+\end{split}\]</div>
+<p>tendremos que incorporar al modelo matemático las siguientes restricciones:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x_{i}  \leq MY_{i}\,\forall i\\
+Y_{i}\epsilon\{0,1\}\,\forall i
+\end{align*}
+\end{split}\]</div>
+<p>siendo M una constante suficientemente grande. Si la capacidad de producción del artículo i está limitada por la cantidad <span class="math notranslate nohighlight">\(C_i\)</span>, la constante M puede ser sustituida por esta cota, en caso contrario, bastará tomar M igual a la demanda toal a cubrir en el horizonte de planificación.</p>
+<p>La función objetivo se verá también modificada. Además de los costes de producción e inventario hay que considerar los costes fijos de producción, Si <span class="math notranslate nohighlight">\(f_i\)</span> es el coste fijo en el que se incurre si hay producción del artículo i, el coste fijo total que habrá que considerar en la función objetivo es <span class="math notranslate nohighlight">\(\sum_{i}f_{i}Y_{i}\)</span>.</p>
+<p>En los problemas de redes en los que intervienen costes fijos asociados a los arcos <strong>debemos considerar restricciones similares</strong>. Consideremos un problema de flujo en redes con el mínimo coste en el que <span class="math notranslate nohighlight">\(f_i\)</span> es el coste fijo en el que incurre si por el arco (i,j) pasa una cantidad estrictamente positiva de flujo. Tomenos</p>
+<p><span class="math notranslate nohighlight">\(x_{ij}\)</span> = cantidad de flujo sobre el arco (i,j).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+y_{ij}=\begin{cases}
+1 &amp; si\,x_{ij}&gt;0\\
+0 &amp; en\,caso\,contrario\\
+\end{cases}
+\end{split}\]</div>
+<p>tendremos que incorporar al modelo matemático las siguientes restricciones:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x_{ij}  \leq MY_{ij}\,\forall (i,j)\\
+Y_{ij}\epsilon\{0,1\}\,\forall (i,j)
+\end{align*}
+\end{split}\]</div>
+<p>Siendo M una constante suficientemente grande. Si la cantidad de flujo que puede circular por la red está limitada a una cantida <span class="math notranslate nohighlight">\(C_{ij}\)</span>, la constante M puede ser sustituida por esta cota, en caso contrario, bastará tomar M igual a la oferta total. En la función objetivo debemos considerar, además de los costes de transporte de flujo sobre la red, los costes fijos asociados, es decir, <span class="math notranslate nohighlight">\(\sum_{(i,j)}f_{ij}Y_{ij}\)</span>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="introduccion.html" title="previous page">Introducción.</a>
+    <a class='right-next' id="next-link" href="capitulo2.html" title="next page"><span class="section-number">4. </span>Modelización de restricciones lógicas con variables 0-1.</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Francisco Rodríguez<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

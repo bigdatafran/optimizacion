@@ -1,0 +1,837 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>2. Modelar componentes en Pyomo. &#8212; Optimizacion con Python</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Introducción." href="ComponentesModelado1.html" />
+    <link rel="prev" title="1. Introducción Pyomo." href="pyomo1.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Optimizacion con Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduccion.html">
+   Introducción.
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  OR-Tools y teoría
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo1.html">
+   1. Introducción.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo1.html#problemas-de-optimizacion-lineal">
+   2. Problemas de optimización lineal.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo1.html#optimizacion-entera">
+   3. Optimización entera.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo2.html">
+   4. Modelización de restricciones lógicas con variables 0-1
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Pyomo
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="pyomo1.html">
+   1. Introducción a Pyomo
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2. Estrategias de Modelado con Pyomo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ComponentesModelado1.html">
+   3. componentes de modelado.
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/EstrategiasModeladoPyomo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/EstrategiasModeladoPyomo.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tipos-de-parametros-o-variables">
+   2.1. Tipos de parámetros o variables.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelos-concretos-en-pyomo">
+   2.2. Modelos concretos en Pyomo.
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#variables-y-parametros-indexados">
+     2.2.1. Variables y parámetros indexados.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#aportacion-de-datos-de-forma-externa">
+     2.2.2. Aportación de datos de forma externa.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modelo-con-definicion-restricciones-de-tipo-rules">
+     2.2.3. Modelo con definición restricciones de tipo
+     <em>
+      Rules
+     </em>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usando-una-funcion-para-construir-el-modelo">
+     2.2.4. Usando una función para construir el modelo.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resolucion-de-modelos-concretos">
+     2.2.5. Resolución de modelos concretos.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modelos-abstractos-en-pyomo">
+   2.3. Modelos abstractos en Pyomo.
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="modelar-componentes-en-pyomo">
+<h1><span class="section-number">2. </span>Modelar componentes en Pyomo.<a class="headerlink" href="#modelar-componentes-en-pyomo" title="Permalink to this headline">¶</a></h1>
+<p>Como vimos <a class="reference internal" href="pyomo1.html#abstractconcrete"><span class="std std-ref">en un apartado anterior</span></a>, existen dos tipos básicos de modelos para definir en Pyomo, El modelo concreto y el abstracto. Con el primero se define el modelo que se quiere optimizar para unos valores de los parámetros concretos, mientras que con el segundo formato se declara de forma genérica el modelo y después se utiliza el mismo para los parámetros concretos sobre los cuales se quiere hacer la optimización. En este apartado se darán más detalles de cómo construir estos dos tipos de modelos.</p>
+<p>Pyomo soporta un diseño de programación orientada a objetos para la construcción de los modelos a optimizar. En este sentido son cuatro los pasos básicos a seguir para construir este modelo:</p>
+<p>1.- Crear el modelo y declarar las componentes.</p>
+<p>2.- Instanciar al modelo.</p>
+<p>3.- Aplicar el solver</p>
+<p>4.- Estudiar los resultados obtenidos.</p>
+<p>En la práctica estos son los cuatro pasos básicos que se deben ejecutar, con diferentes datos o diversas restricciones para entender mejor la naturaleza del problema con el que estamos trabajando.</p>
+<p>Un modelo Pyomo consiste en una serie de componentes del modelo ( <em>modeling components</em>) que definen diferentes aspectos del modelo que se quiere construir. Con Pyomo se pueden tener las diferentes <em>modeling components</em> que generalmente son soportadas por los modelos de tipo AMLs. En concreto las componentes del modelo que se pueden construir en Pyomo, están soportadas por las siguientes clases de tipo Python:</p>
+<ul class="simple">
+<li><p><em>Set</em>. Conjunto de datos utilizados para definir una instancia del modelo.</p></li>
+<li><p><em>Param</em>. Conjunto de parámetros que son utilizados para definir la instancia del modelo.</p></li>
+<li><p><em>Var</em>. Variables de decsión, que conformarán los resultados del modelo.</p></li>
+<li><p><em>Objetive</em>. Es la expresión matemática que hay que maximizar o minimizar.</p></li>
+<li><p><em>Constraint</em>. Son el conjunto de restricciones a tener en cuenta en la solución el problema.</p></li>
+</ul>
+<p>Pymo ofrece dos tipos de contextos para definir e inicializar las componentes del modelo: <em>ConcreteModel</em> y <em>AbstractModel</em>. Y así po ejemplo, para modelar componentes de un modelo abstracto, se utilizará la siguiente expresión:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">I</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">I</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>En este código, se obtiene un objeto denominado model que es una instancia de la clase AbstractModel, y model.I será un objeto de la clase Set, al igual que model.p es una instancia de clase Param. Pyomo también soporta los componentes indexados ( <em>indexed components</em> ), que son una colección de componentes que tienen como referencia un determinado índice, y que se verán con más detalle en apartados posteriores. En el ejemplo anterior, el parámetro p es un componente indexado que tiene como indice el elemento I.</p>
+<p>Para entender la construcción de los modelos ( tanto concreto como abstractos ) que se pueden crear con Pyom, nos basaremos en los modelos matemáticos que se definen a continuación.</p>
+<p>Para el modelo abstracto, se utilizará la siguiente expresión:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{lll} \min &amp; \sum_{j=1}^n c_j x_j &amp; \\
+s.t. &amp; \sum_{j=1}^n a_ij x_j \geq b_i &amp; \forall i = 1 \ldots m\\
+&amp; x_j \geq 0 &amp; \forall j = 1 \ldots n \end{array} \end{split}\]</div>
+<p>Mientras que para un modelo concreto, se usarán los datos concretos del modelo general anterior que se muestran a continuación:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{lll} \min &amp; 4x_1 + 3x_2\\ 
+s.t. &amp; 3x_1 + 4x_2 \geq 1\\
+&amp; 2x_1 + 6x_2 \geq 2 \\
+&amp; x_1,x_2 \geq 0 \end{array} \end{split}\]</div>
+<div class="section" id="tipos-de-parametros-o-variables">
+<span id="tiposrestricciones"></span><h2><span class="section-number">2.1. </span>Tipos de parámetros o variables.<a class="headerlink" href="#tipos-de-parametros-o-variables" title="Permalink to this headline">¶</a></h2>
+<p>En Pyomo se pueden utilizar los siguientes tipos de parámetros o variables, y que en apartados posteriores se verán cómo se pueden utilizar ( todos estos parámetros se pueden ver <a class="reference external" href="https://pyomo.readthedocs.io/en/stable/pyomo_modeling_components/Sets.html#predefined-virtual-sets">en este enlace</a>).</p>
+<ul class="simple">
+<li><p><em>Any</em>. Para cualquier valor.</p></li>
+<li><p><em>Reals</em>. Valores de punto flotante.</p></li>
+<li><p><em>PositiveReals</em>. Valores de punto flotante estrictamente positivos.</p></li>
+<li><p><em>NonPositiveReals</em>. Valores de punto flotante no-positivos.</p></li>
+<li><p><em>NegativeReals</em>. Valores de punto flotante estrictamente negativos.</p></li>
+<li><p><em>NonNegativeReals</em>. Valores de punto flotante no-negativos.</p></li>
+<li><p><em>PercentFraction</em>. Valores de punto flotante dentro del intervalo [0,1].</p></li>
+<li><p><em>UnitInterval</em>. Es un alias para PercentFraction.</p></li>
+<li><p><em>Integers</em>. Valores enteros</p></li>
+<li><p><em>PositiveIntegers</em>. Enteros positivos.</p></li>
+<li><p><em>NonPositiveIntegers</em>. Enteros no-positivos.</p></li>
+<li><p><em>NegativeIntegers</em>. Valores enteros negativos.</p></li>
+<li><p><em>NonNegativeIntegers</em>. Valores enteros no negativos.</p></li>
+<li><p><em>Boolean</em>. Valores booleanos, pueden estar representados por False/True, 0/1, ‘False’/’True’ y ‘F’/’T’.</p></li>
+<li><p><em>Binary</em>. Los números enteros <span class="math notranslate nohighlight">\(\{0,1\}\)</span></p></li>
+</ul>
+</div>
+<div class="section" id="modelos-concretos-en-pyomo">
+<h2><span class="section-number">2.2. </span>Modelos concretos en Pyomo.<a class="headerlink" href="#modelos-concretos-en-pyomo" title="Permalink to this headline">¶</a></h2>
+<p>Esta es la opción más rápida par construir un modelo con unos parámetros concretos, pero que servirá para resolver ese modelo en concreto, si se quiere generalizar el modelo y que sirva para un conjunto de parámetros diferentes, se tendrá que utilizar un modelo abstracto que se desarrollará posteriormente.</p>
+<p>Para definir un modelo concreto, se tendrá que utilizar la clase denominada ConcreteModel(), de la siguiente manera:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A diferencia de lo que ocurre con un modelo abstracto, en estos modelos de tipo concreto, los modelos de componentes dentro del modelo son inmediatamente inicializadas y son añadidas a la isntancia del modelo.</p>
+<p>Las variables de decisión para este ejemplo concreto se declarán de la siguiente manera:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El argumento <em>within</em> se utiliza para definir el rango de valores que soporta la variable. Los valores que se pueden usar para este argumento, se pueden ver en <a class="reference internal" href="#tiposrestricciones"><span class="std std-ref">este apartado anterior</span></a>.</p>
+<p>Otro apartado imprescindible a la hora de construir los modelos en Pyomo es la <em>función objetivo</em>. Para hacer esto, se debe construir una expresión algebraica compuesta de constantes numéricas y variables que siguen a la palabra clave <em>expr</em>. Para el ejemplo anterior, se utilizará la siguiente expresión:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Igualmente se necesitan definir las restricciones del modelo lineal, que para el ejemplo que se sigue, serían de la siguiente manera:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">con1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Uniendo todas estas expresiones, el modelo concreto que debería definirse para este caso, sería el siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="variables-y-parametros-indexados">
+<h3><span class="section-number">2.2.1. </span>Variables y parámetros indexados.<a class="headerlink" href="#variables-y-parametros-indexados" title="Permalink to this headline">¶</a></h3>
+<p>El modelo anterior queda muy bien construido de la forma que lo hemos hecho en el anterior apartado, pero tiene el inconveniente de que es muy difícil de construir y mantener, en el caso de que se disponga de muchas variables. Para salvar esta dificultada, Pymo tiene previsto la utilización de variables y parámetros de tipo indexado, y su utilización y uso se pasa a explicar a continuación.</p>
+<p>Por ejemplo para el caso anterior, si se utilizan variables indexadas, se utilizará una construcción similar a la siguiente:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Los índices de las variables, se podrían utilizar para construir tanto para construir la función objetivo como las restricciones, de la siguiente manera.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>El modelo conjunto con este tipo de planteamiento sería el siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="aportacion-de-datos-de-forma-externa">
+<h3><span class="section-number">2.2.2. </span>Aportación de datos de forma externa.<a class="headerlink" href="#aportacion-de-datos-de-forma-externa" title="Permalink to this headline">¶</a></h3>
+<p>Como puede verse con el anterior modelo, se mejora el indicado en primer lugar, sin embargo adolece de un impportante problema: que los datos están inscrustados en la definición del modelo. Para solucionar esto, existe la posibilidad de definir por un lado los datos de forma independiente,  después usar estos para definir el modelo. Con esto se gana en claridad en el código y permite un mejor mantenimiento del mismo.</p>
+<p>Para conseguir esto, se pueden definir los datos a utilizar de forma independiente de la la siguiente manera (observar el uso muy extendido en este tipo de problemas de los diccionarios):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">6</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Entonces utilizando estos datos, la función objetivo se puede definir de la siguiente manera:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>expresión anterior que es perfectamente válida pero que adole de un serio inconveniente: cuando ay muchos variables y parámetros, se hace inmanejable a medida que dichos parámetros y variables se incrementan. Para resolver esto, se puede utilizar la función <em>sum</em> de la siguiente manera:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>De forma similar a la anterior, se plantearían las restricciones, por lo que el modelo que nos quedará en esta caso sería el siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1"># defino los valores</span>
+<span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">6</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+<span class="c1">#defino el modelo</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">N</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">N</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">N</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="modelo-con-definicion-restricciones-de-tipo-rules">
+<h3><span class="section-number">2.2.3. </span>Modelo con definición restricciones de tipo <em>Rules</em><a class="headerlink" href="#modelo-con-definicion-restricciones-de-tipo-rules" title="Permalink to this headline">¶</a></h3>
+<p>Aún se puede mejorar la construcción de los modelos en Pymo, utilizando lo que en términos anglosajones de denominan <em>rules</em>. En concreto, utilizando estas herramientas, el modelo anterior se puede construir de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">}</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">6</span><span class="p">}</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">}</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">N</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">con_rule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span> <span class="c1">#definimos la rule</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">N</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+<span class="c1">#Ahora utilizamos esa rule</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">con_rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se puede generalizar el uso de rules, para construir los modelos den Pyomo, como se puede ver en el siguiente ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">initialize</span><span class="o">=</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="n">Set</span><span class="p">(</span><span class="n">initialize</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">initialize</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">})</span>
+<span class="n">model</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">,</span><span class="n">initialize</span><span class="o">=</span><span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">6</span><span class="p">})</span>
+<span class="n">model</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="n">initialize</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">con_rule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">)</span> \
+    <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">con_rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="usando-una-funcion-para-construir-el-modelo">
+<h3><span class="section-number">2.2.4. </span>Usando una función para construir el modelo.<a class="headerlink" href="#usando-una-funcion-para-construir-el-modelo" title="Permalink to this headline">¶</a></h3>
+<p>Una baza importante a jugar con Python y poder usar con mayor agilidad las ventajas que ofrece Pyomo es poder utilizar las funciones de Python, para poder ser utilizadas de forma flexible en el código. A continuación se muestra un ejemplo de un posible uso, para el ejemplo sobre el que estamos trabajando.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">create_model</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="p">[],</span> <span class="n">M</span><span class="o">=</span><span class="p">[],</span> <span class="n">c</span><span class="o">=</span><span class="p">{},</span> <span class="n">a</span><span class="o">=</span><span class="p">{},</span> <span class="n">b</span><span class="o">=</span><span class="p">{}):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">N</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">con_rule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">N</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">con_rule</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">},</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span><span class="mi">6</span><span class="p">},</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">2</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="resolucion-de-modelos-concretos">
+<h3><span class="section-number">2.2.5. </span>Resolución de modelos concretos.<a class="headerlink" href="#resolucion-de-modelos-concretos" title="Permalink to this headline">¶</a></h3>
+<p>Para resolver este tipo de modelos, existen dos posibilidades. Una es mediante la inclusión de código dentro del mismo entorno que donde está definido el modelo, como se muestra en el ejemplo que sigue.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+
+<span class="n">opt</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;glpk&#39;</span><span class="p">)</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 Set Declarations
+    x_index : Size=1, Index=None, Ordered=Insertion
+        Key  : Dimen : Domain : Size : Members
+        None :     1 :    Any :    2 : {1, 2}
+
+1 Var Declarations
+    x : Size=2, Index=x_index
+        Key : Lower : Value : Upper : Fixed : Stale : Domain
+          1 :     0 :  None :  None : False :  True : NonNegativeReals
+          2 :     0 :  None :  None : False :  True : NonNegativeReals
+
+1 Objective Declarations
+    obj : Size=1, Index=None, Active=True
+        Key  : Active : Sense    : Expression
+        None :   True : minimize : 4*x[1] + 3*x[2]
+
+2 Constraint Declarations
+    con1 : Size=1, Index=None, Active=True
+        Key  : Lower : Body            : Upper : Active
+        None :   1.0 : 3*x[1] + 4*x[2] :  +Inf :   True
+    con2 : Size=1, Index=None, Active=True
+        Key  : Lower : Body            : Upper : Active
+        None :   2.0 : 2*x[1] + 6*x[2] :  +Inf :   True
+
+5 Declarations: x_index x obj con1 con2
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Problem&#39;: [{&#39;Name&#39;: &#39;unknown&#39;, &#39;Lower bound&#39;: 1.0, &#39;Upper bound&#39;: 1.0, &#39;Number of objectives&#39;: 1, &#39;Number of constraints&#39;: 3, &#39;Number of variables&#39;: 3, &#39;Number of nonzeros&#39;: 5, &#39;Sense&#39;: &#39;minimize&#39;}], &#39;Solver&#39;: [{&#39;Status&#39;: &#39;ok&#39;, &#39;Termination condition&#39;: &#39;optimal&#39;, &#39;Statistics&#39;: {&#39;Branch and bound&#39;: {&#39;Number of bounded subproblems&#39;: 0, &#39;Number of created subproblems&#39;: 0}}, &#39;Error rc&#39;: 0, &#39;Time&#39;: 0.14016246795654297}], &#39;Solution&#39;: [OrderedDict([(&#39;number of solutions&#39;, 0), (&#39;number of solutions displayed&#39;, 0)])]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Otra forma e mediante la línea de comandos, utilizando el comando <em>pyomo solve my_model.py –solver=’glpk’</em>. A continuación, se muestra cómo hacer eso con nuestro ejemplo. Tener en cuenta que al estar trabajando sobre jupyter notebook para escribir todo esto, se utiliza el comando <em>%%writefile codigos/model2.py</em> para guardar el código, como si fuera un fichero python, y posteriormente se ejecuta su código con la instrucción <em>!pyomo solve codigos/model2.py –solver=glpk</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> codigos/model2.py
+<span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">6</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting codigos/model2.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pyomo solve codigos/model2.py --solver<span class="o">=</span>glpk
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[    0.00] Setting up Pyomo environment
+[    0.00] Applying Pyomo preprocessing actions
+[    0.02] Creating model
+[    0.02] Applying solver
+[    0.06] Processing results
+    Number of solutions: 1
+    Solution Information
+      Gap: 0.0
+      Status: feasible
+      Function Value: 0.9999999999999989
+    Solver results file: results.json
+[    0.06] Applying Pyomo postprocessing actions
+[    0.06] Pyomo Finished
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="modelos-abstractos-en-pyomo">
+<h2><span class="section-number">2.3. </span>Modelos abstractos en Pyomo.<a class="headerlink" href="#modelos-abstractos-en-pyomo" title="Permalink to this headline">¶</a></h2>
+<p>Una vez vistas las diferentes modalidades de modelos concretos ya presentadas en los apartado anteriores, el modelo de tipo abstracto para trabajar con Pyomo es fácil de definir, en concreto el ejemplo ya mostrado anteriormente se definiría de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span> 
+
+<span class="n">model</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span> 
+
+<span class="n">model</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">con_rule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">)</span> \
+        <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">con_rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora el modelo abstracto necesita alimentarse de una serie de datos, los cuales deben ser suministrados mediante un fichero que tiene el siguiente formato (llamaremos al fichero datos.dat):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>set N := 1 2 ;
+set M := 1 2 ;
+param c :=
+1 4
+2 3 ;
+param a :=
+1 1 3
+2 1 4
+1 2 2
+2 2 6 ;
+param b :=
+1 1
+2 2 ;
+```
+</pre></div>
+</div>
+<p>Ahora para resolverlo desde las instrucciones del propio programa habría que crear una instancia, a la que se le indica además el fichero de datos con el que debe trabajar, y después la ejecución sería similar al la del modelo concreto ya expuesto en apartados posteriores. En concreto, las instrucciones serían las siguientes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">pprint</span><span class="p">()</span>
+
+<span class="n">instance</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">create_instance</span><span class="p">(</span><span class="s1">&#39;dat/datos.dat&#39;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;______________________________________________________________&quot;</span><span class="p">)</span>
+<span class="n">opt</span> <span class="o">=</span> <span class="n">SolverFactory</span><span class="p">(</span><span class="s1">&#39;glpk&#39;</span><span class="p">)</span>
+<span class="n">opt</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 Set Declarations
+    M : Size=0, Index=None, Ordered=Insertion
+        Not constructed
+    N : Size=0, Index=None, Ordered=Insertion
+        Not constructed
+    a_index : Size=0, Index=None, Ordered=True
+        Not constructed
+
+3 Param Declarations
+    a : Size=0, Index=a_index, Domain=Any, Default=None, Mutable=False
+        Not constructed
+    b : Size=0, Index=M, Domain=Any, Default=None, Mutable=False
+        Not constructed
+    c : Size=0, Index=N, Domain=Any, Default=None, Mutable=False
+        Not constructed
+
+1 Var Declarations
+    x : Size=0, Index=N
+        Not constructed
+
+1 Objective Declarations
+    obj : Size=0, Index=None, Active=True
+        Not constructed
+
+1 Constraint Declarations
+    con : Size=0, Index=M, Active=True
+        Not constructed
+
+9 Declarations: N M c a_index a b x obj con
+______________________________________________________________
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Problem&#39;: [{&#39;Name&#39;: &#39;unknown&#39;, &#39;Lower bound&#39;: 1.0, &#39;Upper bound&#39;: 1.0, &#39;Number of objectives&#39;: 1, &#39;Number of constraints&#39;: 3, &#39;Number of variables&#39;: 3, &#39;Number of nonzeros&#39;: 5, &#39;Sense&#39;: &#39;minimize&#39;}], &#39;Solver&#39;: [{&#39;Status&#39;: &#39;ok&#39;, &#39;Termination condition&#39;: &#39;optimal&#39;, &#39;Statistics&#39;: {&#39;Branch and bound&#39;: {&#39;Number of bounded subproblems&#39;: 0, &#39;Number of created subproblems&#39;: 0}}, &#39;Error rc&#39;: 0, &#39;Time&#39;: 0.03125}], &#39;Solution&#39;: [OrderedDict([(&#39;number of solutions&#39;, 0), (&#39;number of solutions displayed&#39;, 0)])]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>Si la ejecución es desde la línea de comandos, primero creariamos un fichero con extensión .py</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> codigos/model3.py
+<span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AbstractModel</span><span class="p">()</span> 
+
+<span class="n">model</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span> 
+
+<span class="n">model</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">Param</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">,</span> <span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">obj_rule</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">rule</span><span class="o">=</span><span class="n">obj_rule</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">con_rule</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">m</span><span class="p">]</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">N</span><span class="p">)</span> \
+        <span class="o">&gt;=</span> <span class="n">model</span><span class="o">.</span><span class="n">b</span><span class="p">[</span><span class="n">m</span><span class="p">]</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">M</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="n">con_rule</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting codigos/model3.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y después lo ejecutamos desde la linea de comandos con la siguiente instrucción:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pyomo solve codigos/model3.py dat/datos.dat --solver<span class="o">=</span>glpk
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[    0.00] Setting up Pyomo environment
+[    0.00] Applying Pyomo preprocessing actions
+[    0.11] Creating model
+[    0.13] Applying solver
+[    0.19] Processing results
+    Number of solutions: 1
+    Solution Information
+      Gap: 0.0
+      Status: feasible
+      Function Value: 0.9999999999999989
+    Solver results file: results.json
+[    0.19] Applying Pyomo postprocessing actions
+[    0.19] Pyomo Finished
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="pyomo1.html" title="previous page"><span class="section-number">1. </span>Introducción Pyomo.</a>
+    <a class='right-next' id="next-link" href="ComponentesModelado1.html" title="next page"><span class="section-number">3. </span>Introducción.</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Francisco Rodríguez<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

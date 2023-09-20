@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>1. Introducción Pyomo. &#8212; Optimizacion con Python</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e7340bb3dbd8dde6db86f25597f54a1b.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Modelar componentes en Pyomo." href="EstrategiasModeladoPyomo.html" />
+    <link rel="prev" title="4. Modelización de restricciones lógicas con variables 0-1." href="capitulo2.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Optimizacion con Python</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="introduccion.html">
+   Introducción.
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  OR-Tools y teoría
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo1.html">
+   1. Introducción.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo1.html#problemas-de-optimizacion-lineal">
+   2. Problemas de optimización lineal.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo1.html#optimizacion-entera">
+   3. Optimización entera.
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="capitulo2.html">
+   4. Modelización de restricciones lógicas con variables 0-1
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Pyomo
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   1. Introducción a Pyomo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="EstrategiasModeladoPyomo.html">
+   2. Estrategias de Modelado con Pyomo
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ComponentesModelado1.html">
+   3. componentes de modelado.
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/pyomo1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/pyomo1.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i>
+            Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instalacion-del-optimizador-glpk">
+   1.1. Instalación del optimizador glpk.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#otros-optimizadores-o-solvers">
+   1.2. Otros optimizadores o
+   <em>
+    solvers
+   </em>
+   .
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#abstract-versus-modelos-concrete">
+   1.3. Abstract versus Modelos Concrete.
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="introduccion-pyomo">
+<h1><span class="section-number">1. </span>Introducción Pyomo.<a class="headerlink" href="#introduccion-pyomo" title="Permalink to this headline">¶</a></h1>
+<p>Pyomo (  <em>Python Optimization Modeling Objects</em> ) soporta la formulación y el análisis de modelos matemáticos para aplicaciones de optimización complejas. Esta capacidad está comúnmente asociada a los lenguajes de modelado algebraico (AML) como <a class="reference external" href="https://ampl.com/">AMPL</a>, <a class="reference external" href="https://www.aimms.com/">AIMMS</a> y <a class="reference external" href="https://www.gams.com/">GAMS</a>. Los objetos de modelado de Pyomo están integrados en Python, un lenguaje de programación de alto nivel con todas las funciones que contiene un rico conjunto de bibliotecas de apoyo. El modelado es un proceso fundamental en muchos aspectos de la investigación científica, la ingeniería y la empresa. El modelado implica la formulación de una representación simplificada de un sistema u objetos del mundo real.</p>
+<p>Para instalar Pyomo en Python, se pueden seguir las instrucciones que se pueden ver <a class="reference external" href="https://pyomo.readthedocs.io/en/stable/installation.html">en este enlace</a>, pero de forma resumida, su instalación con pip consiste en simplemente ejecutar la siguiente instrucción:</p>
+<p><em>pip install pyomo</em></p>
+<p>Dada la importancia que tiene el uso en la resolución de problemas de optimización en el mundo real, existe una amplia refrencia al mismo en internet, pero sin ningún lugar a la duda, la referencia básica del mismo la podemos encontrar en el sitio web que posee este paquete y que el lector interesado lo puede encontrar en el enlace <a class="reference external" href="http://www.pyomo.org/">http://www.pyomo.org/</a>. Cuando se accede a las páginas de Pyomo, se puede acceder a mucha información relacionada con esta aplicación, pero entre las más destacadas se puede hacer referencia a la <a class="reference external" href="https://pyomo.readthedocs.io/en/stable/">documentación en inglés sobre su uso</a>.</p>
+<p>Pymo se basa en la utilización de diversos optimizadores, y uno de los más utilizados en la referencia sobre el uso de Pyomo es <em>GLPK</em>, cuya instalación se procede a comentar en el siguiente apartado.</p>
+<div class="section" id="instalacion-del-optimizador-glpk">
+<h2><span class="section-number">1.1. </span>Instalación del optimizador glpk.<a class="headerlink" href="#instalacion-del-optimizador-glpk" title="Permalink to this headline">¶</a></h2>
+<p>Para la ejecución de los ejemplos que se van a utilizar en estos apartados, se va a utilizar el solver denominado GLPK (también conocido como glpsol), para ello lo primero que hay que hacer es instalarlo en nuestro sistema. Estas instrucciones las <a class="reference external" href="http://www.osemosys.org/uploads/1/8/5/0/18504136/glpk_installation_guide_for_windows10_-_201702.pdf">podemos ver en este enlace</a>, pero a continuación se pasan a resumir los pasos que deben seguirse ( aquí se van a relatar los pasos a dar para la instalación en windows, para otro sistema operativo los pasos sería muy similares).</p>
+<p>1.- Bajar el fichero winglpk-4.65.zip <a class="reference external" href="http://winglpk.sourceforge.net/">desde este enlace</a>.</p>
+<p>2.- Se descomprime este fichero en una carpeta.</p>
+<p>3.- En las variables de entorno del sistema poner el camino del ejecutable en la variable Path. En el caso concreto del sistema desde el que se escribe estas instrucciones, el camino añadido ha sido el siguiente: <em>D:\programas\GLPK\glpk-4.65\w64</em>.</p>
+<p>4.- Comprobar que la instalación ha sido correcta, para ello abrir una ventana de comandas y ejecutar el comando  <em>glpsol</em>. Si el sistema responde con un mensaje similar a: <em>GLPSOL: GLPK LP/MIP Solver, v4.65
+No input problem file specified; try glpsol –help</em>, la instalación sería correcta, y ya estaría listo para poder utilizarse dentro de Pyomo.</p>
+</div>
+<div class="section" id="otros-optimizadores-o-solvers">
+<h2><span class="section-number">1.2. </span>Otros optimizadores o <em>solvers</em>.<a class="headerlink" href="#otros-optimizadores-o-solvers" title="Permalink to this headline">¶</a></h2>
+<p>Pyomo soporta una gran variedad de optimizadores o <em>solvers</em>. Pyomo tiene interfaces especializadas para algunos optimizadors (por ejemplo, BARON, CBC, CPLEX y Gurobi). También tiene interfaces genéricas que permiten llamar a cualquier optimizador que pueda leer archivos AMPL “.nl” y escribir “.sol” y la capacidad de generar modelos en formato GAMS y recuperar los resultados. Puedes obtener la lista actual de optimizadores  soportados usando el comando pyomo:</p>
+<p><em>pyomo help –solvers</em></p>
+</div>
+<div class="section" id="abstract-versus-modelos-concrete">
+<span id="abstractconcrete"></span><h2><span class="section-number">1.3. </span>Abstract versus Modelos Concrete.<a class="headerlink" href="#abstract-versus-modelos-concrete" title="Permalink to this headline">¶</a></h2>
+<p>Aunque se hará referencia con mayor detalle a estos diferentes tipos de modelos que se pueden utilizar con Pymo, en este apartado introductorio, se hará una mera referencia a los mismos, a fin de que el lector se vaya familiarizando con ellos.</p>
+<p>Un modelo matemático de un determinado problema de optimización, puede ser definido utilizando símbolos matemáticos que representan la situación concreta que se pretende resolver. Y así por ejemplo, la siguiente fórmula representa un típico problema de programación lineal (LP) para encontrar el valor óptimo del vector <span class="math notranslate nohighlight">\(x\)</span> que tiene como <strong>parámetros</strong> <span class="math notranslate nohighlight">\(n\)</span> , y como <strong>vector de parámetros</strong> <span class="math notranslate nohighlight">\(c,\,a\, y\,b\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{lll} \min &amp; \sum_{j=1}^n c_j x_j &amp; \\ s.t. &amp; \sum_{j=1}^n a_ij x_j \geq b_i &amp; \forall i = 1 \ldots m\\ &amp; x_j \geq 0 &amp; \forall j = 1 \ldots n \end{array} \end{split}\]</div>
+<p>A este modelo se le puede denominar <em>abstract</em> o <em>symbolic</em> modelo matemático  ya que se basa en valores de parámetros no especificados. Para poder utilizar este tipo de conceptos, Pyomo tiene una clase denominada <em>AbstractModel</em> que  proporciona un contexto para definir e inicializar modelos abstractos de optimización en Pyomo de tal manera que  los valores concretos de los datos serán suministrados en el momento de obtener una solución al problema de optimización planteado.</p>
+<p>En algunos contextos, un modelo matemático puede definirse directamente con los valores concretos de los datos suministrados en el momento de la definición del modelo e incorporados al mismo. A éstos los llamamos modelos matemáticos <em>concrete</em>. Por ejemplo, el siguiente modelo LP es una instancia concreta del modelo abstracto anterior</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{lll} \min &amp; 2x_1 + 3x_2\\ 
+s.t. &amp; 3x_1 + 4x_2 \geq 1\\
+&amp; 2x_1 + 5x_2 \geq 2 \\
+&amp; x_1,x_2 \geq 0 \end{array} \end{split}\]</div>
+<p>Aunque en principio no se pueda entender al completo la forma en que hay que plantear estos problemas a Pyomo, a continuación se muestra el código necesario para su resolución. No es preciso entender por completo el funcionamiento del siguiente código, ya que en los apartados que siguen a éste se explicará todo con mayor detalle, pero se ha creído oportuno ir introduciendo conceptos que posteriormente se expondrán con mayor exactitud.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> codigos/model1.py
+<span class="kn">from</span> <span class="nn">pyomo.environ</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ConcreteModel</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">=</span> <span class="n">Var</span><span class="p">(</span><span class="n">within</span><span class="o">=</span><span class="n">NonNegativeReals</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">obj</span> <span class="o">=</span> <span class="n">Objective</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con1</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">3</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">con2</span> <span class="o">=</span> <span class="n">Constraint</span><span class="p">(</span><span class="n">expr</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_1</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">model</span><span class="o">.</span><span class="n">x_2</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting codigos/model1.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pyomo solve codigos/model1.py --solver<span class="o">=</span>glpk
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[    0.00] Setting up Pyomo environment
+[    0.00] Applying Pyomo preprocessing actions
+[    0.02] Creating model
+[    0.02] Applying solver
+[    0.06] Processing results
+    Number of solutions: 1
+    Solution Information
+      Gap: 0.0
+      Status: feasible
+      Function Value: 1.2000000000000002
+    Solver results file: results.json
+[    0.06] Applying Pyomo postprocessing actions
+[    0.06] Pyomo Finished
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="capitulo2.html" title="previous page"><span class="section-number">4. </span>Modelización de restricciones lógicas con variables 0-1.</a>
+    <a class='right-next' id="next-link" href="EstrategiasModeladoPyomo.html" title="next page"><span class="section-number">2. </span>Modelar componentes en Pyomo.</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Francisco Rodríguez<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

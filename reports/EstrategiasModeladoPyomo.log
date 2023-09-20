@@ -1,0 +1,57 @@
+Traceback (most recent call last):
+  File "d:\programas\anaconda\lib\site-packages\jupyter_cache\executors\utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "d:\programas\anaconda\lib\site-packages\nbclient\client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "d:\programas\anaconda\lib\site-packages\nbclient\util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "d:\programas\anaconda\lib\site-packages\nbclient\util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "d:\programas\anaconda\lib\asyncio\base_events.py", line 583, in run_until_complete
+    return future.result()
+  File "d:\programas\anaconda\lib\site-packages\nbclient\client.py", line 554, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "d:\programas\anaconda\lib\site-packages\nbclient\client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "d:\programas\anaconda\lib\site-packages\nbclient\client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pyomo.environ import *
+
+model = ConcreteModel()
+model.x = Var([1,2], within=NonNegativeReals)
+model.obj = Objective(expr=4*model.x[1] + 3*model.x[2])
+model.con1 = Constraint(expr=3*model.x[1] + 4*model.x[2]>=1)
+model.con2 = Constraint(expr=2*model.x[1] + 6*model.x[2]>=2)
+
+model.pprint()
+
+opt = SolverFactory('glpk')
+opt.solve(model) 
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mApplicationError[0m                          Traceback (most recent call last)
+[1;32m<ipython-input-7-478e9be8026c>[0m in [0;36m<module>[1;34m[0m
+[0;32m     10[0m [1;33m[0m[0m
+[0;32m     11[0m [0mopt[0m [1;33m=[0m [0mSolverFactory[0m[1;33m([0m[1;34m'glpk'[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[1;32m---> 12[1;33m [0mopt[0m[1;33m.[0m[0msolve[0m[1;33m([0m[0mmodel[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m
+[1;32mD:\programas\Anaconda\lib\site-packages\pyomo\opt\base\solvers.py[0m in [0;36msolve[1;34m(self, *args, **kwds)[0m
+[0;32m    516[0m         [1;34m""" Solve the problem """[0m[1;33m[0m[1;33m[0m[0m
+[0;32m    517[0m [1;33m[0m[0m
+[1;32m--> 518[1;33m         [0mself[0m[1;33m.[0m[0mavailable[0m[1;33m([0m[0mexception_flag[0m[1;33m=[0m[1;32mTrue[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m    519[0m         [1;31m#[0m[1;33m[0m[1;33m[0m[1;33m[0m[0m
+[0;32m    520[0m         [1;31m# If the inputs are models, then validate that they have been[0m[1;33m[0m[1;33m[0m[1;33m[0m[0m
+
+[1;32mD:\programas\Anaconda\lib\site-packages\pyomo\opt\solver\shellcmd.py[0m in [0;36mavailable[1;34m(self, exception_flag)[0m
+[0;32m    116[0m             [1;32mif[0m [0mexception_flag[0m[1;33m:[0m[1;33m[0m[1;33m[0m[0m
+[0;32m    117[0m                 [0mmsg[0m [1;33m=[0m [1;34m"No executable found for solver '%s'"[0m[1;33m[0m[1;33m[0m[0m
+[1;32m--> 118[1;33m                 [1;32mraise[0m [0mApplicationError[0m[1;33m([0m[0mmsg[0m [1;33m%[0m [0mself[0m[1;33m.[0m[0mname[0m[1;33m)[0m[1;33m[0m[1;33m[0m[0m
+[0m[0;32m    119[0m             [1;32mreturn[0m [1;32mFalse[0m[1;33m[0m[1;33m[0m[0m
+[0;32m    120[0m         [1;32mreturn[0m [1;32mTrue[0m[1;33m[0m[1;33m[0m[0m
+
+[1;31mApplicationError[0m: No executable found for solver 'glpk'
+ApplicationError: No executable found for solver 'glpk'
+
